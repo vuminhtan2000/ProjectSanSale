@@ -1,0 +1,15 @@
+.baiviet {
+  margin: 50px;
+}
+.baiviet-ck {
+  margin: 50px;
+  width: 100%;
+}
+
+.invalid-field {
+  border-color: #dc3545;
+  color: #dc3545;
+  background-color: #fff;
+  /* border-style: dotted; */
+  border-width: thick;
+}

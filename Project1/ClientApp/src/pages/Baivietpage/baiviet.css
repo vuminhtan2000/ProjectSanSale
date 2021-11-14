@@ -1,0 +1,42 @@
+:root {
+    --primary-color: #113F67;
+    --secondary-color: #226597;
+    --third-color: #87C0CD;
+}
+
+.container{
+    background-color: white;
+}
+.container-bv{
+    background-color: var(--third-color);
+    height:100%;
+}
+.baiviet{
+    height: 100%;
+    background-color: white;
+    margin: 60px 100px 20px 100px;
+}
+.baiviet-body{
+}
+.title{
+    text-align: center;
+    font-size: 4rem;
+}
+.metatitle{
+    font-size: 16px;
+    font-style: italic;
+
+}
+.image{
+    text-align: center;
+    margin: 30px;
+}
+p{
+    font-size: 16px;
+
+}
+ul{
+    margin-left: 20px!important;
+    font-size: 16px;
+
+}

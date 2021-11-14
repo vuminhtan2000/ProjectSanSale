@@ -1,0 +1,49 @@
+:root {
+  --primary-color: #113F67;
+  --secondary-color: #226597;
+  --third-color: #87C0CD;
+}
+.wrapper {
+  margin-top: 30px;
+}
+.sidebar{
+  margin-top: 30px;
+  transition: all 0,5s ease;
+}
+.navbar{
+  position: fixed;
+  z-index: 20;
+}
+.navbar  svg{
+  width: 30px!important;
+  height: 30px;
+ 
+  
+  
+}
+.navbar .iconmo{
+  border: initial;
+  position: absolute;
+  left: -20px;
+  top: 100px;
+  z-index:100;
+  background-color: var(--third-color);
+}
+.active {
+  background-color:var(--secondary-color);
+  
+}
+.active p{
+  color: white;
+  
+}
+.main-panel{
+  background-color:var(--third-color);
+}
+#info{
+ 
+ float: right;
+  margin-left: 50px;
+  margin-top: 50px;
+
+}
