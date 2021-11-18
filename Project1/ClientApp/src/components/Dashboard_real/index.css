@@ -1,0 +1,55 @@
+.asd {
+  width: 100%;
+}
+.featured {
+  display: flex;
+  margin-bottom: 30px;
+}
+.featured_Item {
+  flex: 1;
+  margin: 0px 20px;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 5px 5px 21px -10px #000000;
+  box-shadow: 5px 5px 21px -10px #000000;
+  background: #eeeeee;
+}
+.featured_Item:hover {
+  transform: translateY(-1px);
+  transition: transfrom linear 0.1s;
+  box-shadow: 0 1px 20px 0 #000000;
+}
+.featured_Chart {
+  flex: 2em;
+  margin: 0px 20px;
+  padding: 30px 0px 30px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 5px 5px 21px -10px #000000;
+  box-shadow: 5px 5px 21px -10px #000000;
+  background: #eeeeee;
+}
+.featured_Chart:hover {
+  transform: translateY(-1px);
+  transition: transfrom linear 0.1s;
+  box-shadow: 0 1px 20px 0 #000000;
+}
+.featured_Chart1 {
+  flex: none;
+  margin: 0px 20px;
+  padding: 30px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 5px 5px 21px -10px #000000;
+  box-shadow: 5px 5px 21px -10px #000000;
+  background: #eeeeee;
+}
+.featured_Chart1:hover {
+  transform: translateY(-1px);
+  transition: transfrom linear 0.1s;
+  box-shadow: 0 1px 20px 0 #000000;
+}
+
+.chart {
+}

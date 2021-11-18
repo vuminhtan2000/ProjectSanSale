@@ -86,7 +86,7 @@ export default function Cateproduct() {
               <button class="home-filler_btn btn-cate ">Bán Chạy</button>
               <select type="text" class="select-input" name="categoryId">
                 <option value={1}>1 . Thiết Bị Điển Tử</option>
-                <option value={2}>2 . Quẩn Áo </option>
+                <option value={2}>2 . Quần Áo </option>
                 <option value={3}>3 . Food</option>
                 <option value={4}>4 . Nội Thất</option>
               </select>
