@@ -1,49 +1,43 @@
 :root {
-  --primary-color: #113F67;
+  --primary-color: #113f67;
   --secondary-color: #226597;
-  --third-color: #87C0CD;
+  --third-color: #87c0cd;
 }
 .wrapper {
-  margin-top: 30px;
+  width: 100%;
 }
-.sidebar{
-  margin-top: 30px;
-  transition: all 0,5s ease;
+.sidebar {
+  transition: all 0, 5s ease;
 }
-.navbar{
+.navbar {
   position: fixed;
   z-index: 20;
 }
-.navbar  svg{
-  width: 30px!important;
+.navbar svg {
+  width: 30px !important;
   height: 30px;
- 
-  
-  
 }
-.navbar .iconmo{
+.navbar .iconmo {
   border: initial;
   position: absolute;
   left: -20px;
   top: 100px;
-  z-index:100;
+  z-index: 100;
   background-color: var(--third-color);
 }
 .active {
-  background-color:var(--secondary-color);
-  
+  background-color: var(--secondary-color);
 }
-.active p{
+.active p {
   color: white;
-  
 }
-.main-panel{
-  background-color:var(--third-color);
+.main-panel {
+  background-color: var(--third-color);
 }
-#info{
- 
- float: right;
+#info {
+  float: right;
   margin-left: 50px;
   margin-top: 50px;
-
+}
+.content {
 }

@@ -18,6 +18,7 @@ import CategoryList from "../../components/CategoryList/CategoryList";
 import BaiViet from "../../components/BaiViet/Baiviet";
 import Slides from "../../components/sideconf/Sideconf";
 import { API_URL } from "../../constants/config";
+import DashDefault from "../../components/Dashboard_real";
 
 function Dashboard(props) {
   const [isVisible, setIsVisible] = useState(true);
@@ -69,7 +70,7 @@ function Dashboard(props) {
     },
     {
       name: "Admin",
-      to: "/dashboard/admin",
+      to: "/dashboard/dashdefault",
       exact: true,
       icon: <RiAdminLine />,
     },
@@ -278,6 +279,7 @@ function Dashboard(props) {
               <Route path="/dashboard/productlist" component={ProductList} />
               <Route path="/dashboard/baiviet" component={BaiViet} />
               <Route path="/dashboard/slides" component={Slides} />
+              <Route path="/dashboard/dashdefault" component={DashDefault} />
               <div class="card col-md-3 align-items-center  " id="info">
                 <div class="card-header">
                   <h4 class="card-title">Team Members</h4>
@@ -314,7 +316,7 @@ function Dashboard(props) {
                         <div class="col-md-2 col-2">
                           <div class="avatar">
                             <img
-                              src="../assets/img/faces/joe-gardner-2.jpg"
+                              src="../assets/img/faces/minh_tan.jpg"
                               alt="Circle Image"
                               class="img-circle img-no-padding img-responsive"
                             />
