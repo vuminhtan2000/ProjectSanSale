@@ -36,6 +36,7 @@
   box-shadow: 0 1px 20px 0 #000000;
 }
 .featured_Chart1 {
+  width: 450px;
   flex: none;
   margin: 0px 20px;
   padding: 30px 10px;
@@ -51,5 +52,13 @@
   box-shadow: 0 1px 20px 0 #000000;
 }
 
-.chart {
-}
+/* .chart_right {
+  position: absolute;
+  left: auto;
+  top: 24px;
+  right: 5px;
+  display: block !important;
+} */
+/* .apexcharts-legend {
+  display: none !important;
+} */

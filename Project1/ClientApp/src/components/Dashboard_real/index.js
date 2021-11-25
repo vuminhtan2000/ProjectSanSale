@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, useReducer } from "react";
 // import { Line } from "react-chartjs-2";
 import Chart from "react-apexcharts";
 import ApexCharts from "apexcharts";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import "./index.css";
+import { Doughnut } from "react-chartjs-2";
 
 class DashDefault extends React.Component {
   componentDidMount() {
@@ -11,38 +12,51 @@ class DashDefault extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          series: data
-            .concat(this.state.series)
+          series1: data
             .slice(0, 10)
-            .sort((a, b) => (a.itemM > b.itemM ? -1 : 1))
+            .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
             .map((item) => {
               return item.viewCount;
             }),
-          asdasd: data.slice(0, 10).map((item) => {
-            return item.metaKeywords + ", ";
-          }),
+          options1: {
+            ...this.state.options1,
+            labels: data
+              .slice(0, 10)
+              .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
+              .map((item) => {
+                return item.metaKeywords;
+              }),
+          },
+          asdasd: data.map((item) => item.viewCount),
+          // asdasd: data.reduce((a, b) => (a = a + b)),
+          // .reduce((a, b) => (a = a + b)),
+          series2: [
+            {
+              ...this.state.series2,
+              data: data.map((item) => item.viewCount),
+            },
+          ],
         });
+        console.log(this.state.asdasd);
+        console.log(this.state.asdasd.reduce((a, b) => (a = a + b), 0));
+        // console.log(this.state.series2);
+
+        console.log(
+          this.state.series2.map((item) => {
+            return [item.data.reduce((a, b) => (a = a + b))];
+          })
+        );
       });
   }
-
+  MyComponent() {}
   constructor(props) {
     super(props);
     this.state = {
-      series: [],
       asdasd: [],
-      options: {
-        labels: [
-          "sản phẩm 1",
-          "sản phẩm 2",
-          "sản phẩm 3",
-          "sản phẩm 4",
-          "sản phẩm 5",
-          "sản phẩm 6",
-          "sản phẩm 7",
-          "sản phẩm 8",
-          "sản phẩm 9",
-          "sản phẩm 10",
-        ],
+      // Chart 1
+      series1: [],
+      options1: {
+        labels: [],
         colors: [
           "#33b2df",
           "#546E7A",
@@ -59,16 +73,14 @@ class DashDefault extends React.Component {
           text: "TOP 10 SP",
         },
       },
-    };
-
-    this.state1 = {
-      series: [
+      // Chart 2
+      series2: [
         {
-          name: "",
-          data: [31, 40, 190, 51, -45, 150, 40, 28, 51, -15, 120, 200],
+          name: "Tổng",
+          data: [],
         },
       ],
-      options: {
+      options2: {
         chart: {
           type: "area",
         },
@@ -142,21 +154,26 @@ class DashDefault extends React.Component {
           <div className="featured_Chart1">
             {/* PIE CHART */}
             <Chart
-              options={this.state.options}
-              series={this.state.series}
+              options={this.state.options1}
+              series={this.state.series1}
               type="donut"
-              width={450}
+              width={420}
             />
           </div>
           <div className="featured_Chart">
             {/* LINE CHART */}
             <Chart
-              options={this.state1.options}
-              series={this.state1.series}
+              options={this.state.options2}
+              series={this.state.series2}
               type="area"
               width={650}
               height={400}
             />
+            <div>
+              {this.state.series2.map((item) => {
+                return [item.data.reduce((a, b) => (a = a + b))];
+              })}
+            </div>
           </div>
         </div>
       </div>
