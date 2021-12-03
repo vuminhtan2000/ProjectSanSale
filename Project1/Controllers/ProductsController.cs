@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
 using Project1.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Project1.Controllers
 {
@@ -61,9 +61,9 @@ namespace Project1.Controllers
                 })
                 .ToListAsync();
         }
-        // GET: api/Products/5
-        [HttpGet("GetProducts_status")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_status(Boolean status)
+        // GET: api/Products/GetProducts_categoryId=5
+        [HttpGet("GetProducts_categoryId")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_categoryId(int categoryId)
         {
             return _context.Products
                 .Select(x => new Product()
@@ -94,7 +94,7 @@ namespace Project1.Controllers
                 Link = x.Link,
                 ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
             })
-                .Where(pro => pro.Status == status).ToList();
+                .Where(pro => pro.CategoryId == categoryId).ToList();
                 
         }
 
@@ -224,6 +224,7 @@ namespace Project1.Controllers
             }
             return imageName;
         }
+
         [NonAction]
         public void DeleteImage(string imageName)
         {

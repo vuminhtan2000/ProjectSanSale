@@ -17,16 +17,6 @@ export default function ProductList(props) {
     refreshEmployeeList();
   }, []);
 
-  // const select = () => {
-  //   if (number == 0) {
-  //     setUrl = "https://localhost:5001/api/Products/";
-  //   } else if (number == 1) {
-  //     setUrl = "https://localhost:5001/api/Products/GetProducts_a_z";
-  //   } else if (number == 2) {
-  //     setUrl = "https://localhost:5001/api/Products/GetProducts_z_a";
-  //   }
-  // };
-
   const employeeAPI = (url = `${API_URL}/Products/`) => {
     return {
       fetchAll: () => axios.get(url),
@@ -109,15 +99,6 @@ export default function ProductList(props) {
           search={search}
           number={number}
         />
-        {/* {employeeList
-          .sort((a, b) => (a.name > b.name ? 1 : -1))
-          .map((item, i) => {
-            return (
-              <td class="row" key={i}>
-                <td>{item.name}</td>
-              </td>
-            );
-          })} */}
       </div>
     </>
   );

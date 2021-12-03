@@ -35,7 +35,6 @@ const menus = [
     to: "/call",
     exact: true,
   },
-
 ];
 const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
   return (
@@ -76,7 +75,7 @@ export default class App extends Component {
                 />
               </div>
               <div className="b-serach">
-                <button className="btn-primary  icon " type="button">
+                <button className="btn-primary  icon" type="button">
                   <BsSearch />
                 </button>
               </div>

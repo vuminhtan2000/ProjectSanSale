@@ -50,6 +50,7 @@ export default function TaskFrom(props) {
       ...values,
       [name]: value,
     });
+    console.log(value);
   };
 
   const showPreview = (e) => {

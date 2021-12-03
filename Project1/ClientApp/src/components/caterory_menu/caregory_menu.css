@@ -1,115 +1,116 @@
 /* khung menu category */
 
 .card-i {
-    width: 100%;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-   
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin: 10px;
 }
 
 .card-i a {
-    justify-content: center;
-    width: 125px !important;
-    height: 100px;
+  justify-content: center;
+  text-align: center;
 }
 
+.img {
+  width: 80px !important;
+  height: 80px;
+}
 .card-i a:hover {
-    text-decoration: none;
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1)
+  text-decoration: none;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .cardimg {
-    justify-content: center;
-    margin: 10px;
-    width: 100px !important;
-    height: 100px;
+  justify-content: center;
+  margin: 10px;
+  width: 100px !important;
+  height: 100px;
 }
 
 .img-icon img {
-    margin-left: 28px;
-    width: 40px !important;
-    height: 40px;
+  margin-left: 28px;
+  width: 40px !important;
+  height: 40px;
 }
 
 .cardimg h5 {
-    padding: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    justify-content: center;
-    text-align: center;
-    color: #000;
+  padding: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  justify-content: center;
+  text-align: center;
+  color: #000;
 }
 
 .btnpre {
-    display: none;
+  display: none;
 }
 
 .btnnext {
-    display: none;
+  display: none;
 }
 
 .slick-slide {
-    display: flex;
-    width: 150px!important;
+  display: flex;
+  width: 150px !important;
 }
 
 @media (max-width: 1024px) {
-    .card-i {
-        display: block;
-        position: asolute;
-        margin: 10px!important;
-        justify-content: center;
-        z-index: 1!important;
-        
-    }
-    .cardimg {
-        justify-content: center;
-        margin-left: 40px;
-        width: 100 !important;
-        height: 100px;
-    }
-    .btnpre {
-        display: block;
-        position: relative;
-        top: -75px;
-    }
-    .btnnext {
-        display: block;
-        position: relative;
-        top: -100px;
-        float: right;
-        right: 30px;
-    }
+  .card-i {
+    display: block;
+    position: asolute;
+    margin: 10px !important;
+    justify-content: center;
+    z-index: 1 !important;
+  }
+  .cardimg {
+    justify-content: center;
+    margin-left: 40px;
+    width: 100 !important;
+    height: 100px;
+  }
+  .btnpre {
+    display: block;
+    position: relative;
+    top: -75px;
+  }
+  .btnnext {
+    display: block;
+    position: relative;
+    top: -100px;
+    float: right;
+    right: 30px;
+  }
 }
 @media (max-width: 740px) {
-    .card-i {
-        display: block;
-        position: asolute;
-        margin: 10px!important;
-        justify-content: center;
-        z-index: 1!important;
-        
-    }
-    .cardimg {
-        justify-content: center;
-        margin-left: 40px;
-        width: 100 !important;
-        height: 100px;
-    }
-    .btnpre {
-        display: block;
-        position: relative;
-        top: -75px;
-    }
-    .btnnext {
-        display: block;
-        position: relative;
-        top: -100px;
-        float: right;
-        right: 30px;
-    }
+  .card-i {
+    display: block;
+    position: asolute;
+    margin: 10px !important;
+    justify-content: center;
+    z-index: 1 !important;
+  }
+  .cardimg {
+    justify-content: center;
+    margin-left: 40px;
+    width: 100 !important;
+    height: 100px;
+  }
+  .btnpre {
+    display: block;
+    position: relative;
+    top: -75px;
+  }
+  .btnnext {
+    display: block;
+    position: relative;
+    top: -100px;
+    float: right;
+    right: 30px;
+  }
 }

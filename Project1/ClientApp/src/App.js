@@ -7,7 +7,8 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import Home from "./pages/HomePage/Trangchu/Home";
 import Baiviethome from "./pages/Baivietpage/Baiviet";
-import Backtotop from './components/backtotop/backtotop'
+import Backtotop from "./components/backtotop/backtotop";
+import Layout_chung from "./components/caterory_menu/showsanpham/Layout_chung";
 
 class App extends Component {
   render() {
@@ -17,8 +18,9 @@ class App extends Component {
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
           <Route path="/baiviet" component={Baiviethome} />
+          <Route path="/layout_chung" component={Layout_chung} />
           <Route path="/" exact component={Home} />
-          <Backtotop/>
+          <Backtotop />
         </div>
       </BrowserRouter>
     );

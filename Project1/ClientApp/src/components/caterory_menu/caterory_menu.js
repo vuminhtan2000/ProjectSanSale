@@ -1,7 +1,15 @@
 import React, { Component } from "react";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import Slider from "react-slick";
 import "../caterory_menu/caregory_menu.css";
+import { API_URL } from "../../constants/config";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
+import CategoryList from "../CategoryList/CategoryList";
+import Baiviethome from "../../pages/Baivietpage/Baiviet";
+import Layout_chung from "../caterory_menu/showsanpham/Layout_chung";
+import Dientu from "../caterory_menu/showsanpham/dientu/dientu";
+import Food from "../caterory_menu/showsanpham/food/food";
+
 const categroty = [
   "./img/iconcomputer.PNG",
   "./img/food.png",
@@ -13,18 +21,103 @@ const categroty = [
 
   //src={categroty[1]}
 ];
-export default class slidecare extends Component {
+
+const menus = [
+  {
+    name: "Thiết bị Điện Tử",
+    exact: true,
+    img: categroty[0],
+  },
+  {
+    name: "Food",
+    exact: true,
+    img: categroty[1],
+  },
+  {
+    name: "Quần áo",
+    to: "/layout_chung/quanao",
+    exact: true,
+    img: categroty[2],
+  },
+  {
+    name: "Giày dép",
+    to: "/layout_chung/giaydep",
+    exact: true,
+    img: categroty[3],
+  },
+  {
+    name: "Domestic",
+    to: "/layout_chung/domestic",
+    exact: true,
+    img: categroty[4],
+  },
+  {
+    name: "Trang sức",
+    to: "/layout_chung/trangsuc",
+    exact: true,
+    img: categroty[5],
+  },
+  {
+    name: "nạp Card",
+    to: "/layout_chung/card",
+    exact: true,
+    img: categroty[6],
+  },
+];
+const MenuLink = ({ label, to, activeOnlyWhenExact, img, component }) => {
+  return (
+    <Route
+      path={to}
+      component={component}
+      exact={activeOnlyWhenExact}
+      children={({ match }) => {
+        var active = match ? "active" : "";
+        return (
+          <div className={active}>
+            <Link to={to}>
+              <img className="img" src={img} alt="iconcomputer" />
+              <hr />
+              {label}
+            </Link>
+          </div>
+        );
+      }}
+    />
+  );
+};
+export default class category_menu extends Component {
   constructor(props) {
     super(props);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
+    this.values = 1;
   }
+
   next() {
     this.slider.slickNext();
   }
   previous() {
     this.slider.slickPrev();
   }
+
+  showMenus = (menus) => {
+    var result = null;
+    if (menus.length > 0) {
+      result = menus.map((menu, index) => {
+        return (
+          <MenuLink
+            key={index}
+            label={menu.name}
+            to={menu.to}
+            activeOnlyWhenExact={menu.exact}
+            img={menu.img}
+            component={menu.component}
+          />
+        );
+      });
+    }
+    return result;
+  };
   render() {
     const settings = {
       dots: false,
@@ -64,88 +157,93 @@ export default class slidecare extends Component {
       ],
     };
     return (
-      <div className="card-i">
-        <Slider ref={(c) => (this.slider = c)} {...settings}>
-          <a href="#">
-            <div className="cardimg" key={1}>
-              <div className="img-icon">
-                <img src={categroty[0]} alt="iconcomputer" />
+      <BrowserRouter>
+        <div className="card-i">
+          {/* <div className="menu-item"> {this.showMenus(menus)} </div> */}
+
+          <Slider ref={(c) => (this.slider = c)} {...settings}>
+            <a href="http://sansale.somee.com/layout_chung/thietbidientu">
+              <div className="cardimg" key={1}>
+                <div className="img-icon">
+                  <img src={categroty[0]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Thiết bị Điện Tử </h5>
+                </div>
               </div>
-              <div className="">
-                <h5>Thiết bị Điện Tử </h5>
+            </a>
+            <a href="http://sansale.somee.com/layout_chung/food">
+              <div className="cardimg" key={2}>
+                <div className="img-icon">
+                  <img src={categroty[1]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Food </h5>
+                </div>
               </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={2}>
-              <div className="img-icon">
-                <img src={categroty[1]} alt="iconcomputer" />
+            </a>
+            <a href="#">
+              <div className="cardimg" key={3}>
+                <div className="img-icon">
+                  <img src={categroty[2]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Quần áo </h5>
+                </div>
               </div>
-              <div className="">
-                <h5>Food </h5>
+            </a>
+            <a href="#">
+              <div className="cardimg" key={4}>
+                <div className="img-icon">
+                  <img src={categroty[3]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Giày dép </h5>
+                </div>
               </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={3}>
-              <div className="img-icon">
-                <img src={categroty[2]} alt="iconcomputer" />
+            </a>
+            <a href="#">
+              <div className="cardimg" key={5}>
+                <div className="img-icon">
+                  <img src={categroty[4]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Cosmectic</h5>
+                </div>
               </div>
-              <div className="">
-                <h5>Quần áo </h5>
+            </a>
+            <a href="#">
+              <div className="cardimg" key={6}>
+                <div className="img-icon">
+                  <img src={categroty[5]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Đồng Hồ </h5>
+                </div>
               </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={4}>
-              <div className="img-icon">
-                <img src={categroty[3]} alt="iconcomputer" />
+            </a>
+            <a href="#">
+              <div className="cardimg" key={7}>
+                <div className="img-icon">
+                  <img src={categroty[6]} alt="iconcomputer" />
+                </div>
+                <div className="">
+                  <h5>Nạp thẻ </h5>
+                </div>
               </div>
-              <div className="">
-                <h5>Giày dép </h5>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={5}>
-              <div className="img-icon">
-                <img src={categroty[4]} alt="iconcomputer" />
-              </div>
-              <div className="">
-                <h5>Cosmectic</h5>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={6}>
-              <div className="img-icon">
-                <img src={categroty[5]} alt="iconcomputer" />
-              </div>
-              <div className="">
-                <h5>Đồng Hồ </h5>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div className="cardimg" key={7}>
-              <div className="img-icon">
-                <img src={categroty[6]} alt="iconcomputer" />
-              </div>
-              <div className="">
-                <h5>Nạp thẻ </h5>
-              </div>
-            </div>
-          </a>
-        </Slider>
-        <div style={{ textAlign: "center" }}>
-          <button className="btnpre" onClick={this.previous}>
-            <BsChevronLeft />
-          </button>
-          <button className="btnnext" onClick={this.next}>
-            <BsChevronRight />
-          </button>
+            </a>
+          </Slider>
+
+          <div style={{ textAlign: "center" }}>
+            <button className="btnpre" onClick={this.previous}>
+              <BsChevronLeft />
+            </button>
+            <button className="btnnext" onClick={this.next}>
+              <BsChevronRight />
+            </button>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

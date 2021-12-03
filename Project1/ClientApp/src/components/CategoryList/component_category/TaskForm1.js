@@ -41,16 +41,12 @@ export default function TaskForm(props) {
       reader.onload = (x) => {
         setValues({
           ...values,
-          // imageFile,
-          // imageSrc: x.target.result,
         });
       };
       reader.readAsDataURL(imageFile);
     } else {
       setValues({
         ...values,
-        // imageFile: null,
-        // imageSrc: defaultImageSrc,
       });
     }
   };
@@ -154,6 +150,7 @@ export default function TaskForm(props) {
                       </select>
                     </div>
                   </div>
+                  {/* {console.log(values.status)} */}
                   <div class="col-md-8 pl-1">
                     <div class="form-group">
                       <label>Meta title</label>
