@@ -31,12 +31,11 @@ namespace Project1.Models
         public string Tags { get; set; }
         public string Language { get; set; }
         public string Content1 { get; set; }
-
-        public virtual Category Category { get; set; }
-        public virtual Tag TagsNavigation { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
         [NotMapped]
         public string ImageSrc { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Tag TagsNavigation { get; set; }
     }
 }
