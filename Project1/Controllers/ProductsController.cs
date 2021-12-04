@@ -42,7 +42,7 @@ namespace Project1.Controllers
                     MoreImages = x.MoreImages,
                     Price = x.Price,
                     PromotionPrice = x.PromotionPrice,
-                    IncludedVat = x.IncludedVat,
+                    HotProduct = x.HotProduct,
                     Quantity = x.Quantity,
                     CategoryId = x.CategoryId,
                     Detail = x.Detail,
@@ -67,39 +67,113 @@ namespace Project1.Controllers
         {
             return _context.Products
                 .Select(x => new Product()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Code = x.Code,
-                MetaTitle = x.MetaTitle,
-                Description = x.Description,
-                Image = x.Image,
-                MoreImages = x.MoreImages,
-                Price = x.Price,
-                PromotionPrice = x.PromotionPrice,
-                IncludedVat = x.IncludedVat,
-                Quantity = x.Quantity,
-                CategoryId = x.CategoryId,
-                Detail = x.Detail,
-                Warranty = x.Warranty,
-                CreatedDate = x.CreatedDate,
-                CreatedBy = x.CreatedBy,
-                ModifiedDate = x.ModifiedDate,
-                ModifiedBy = x.ModifiedBy,
-                MetaKeywords = x.MetaKeywords,
-                MetaDescriptions = x.MetaDescriptions,
-                Status = x.Status,
-                TopHot = x.TopHot,
-                ViewCount = x.ViewCount,
-                Link = x.Link,
-                ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
-            })
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Code = x.Code,
+                    MetaTitle = x.MetaTitle,
+                    Description = x.Description,
+                    Image = x.Image,
+                    MoreImages = x.MoreImages,
+                    Price = x.Price,
+                    PromotionPrice = x.PromotionPrice,
+                    HotProduct = x.HotProduct,
+                    Quantity = x.Quantity,
+                    CategoryId = x.CategoryId,
+                    Detail = x.Detail,
+                    Warranty = x.Warranty,
+                    CreatedDate = x.CreatedDate,
+                    CreatedBy = x.CreatedBy,
+                    ModifiedDate = x.ModifiedDate,
+                    ModifiedBy = x.ModifiedBy,
+                    MetaKeywords = x.MetaKeywords,
+                    MetaDescriptions = x.MetaDescriptions,
+                    Status = x.Status,
+                    TopHot = x.TopHot,
+                    ViewCount = x.ViewCount,
+                    Link = x.Link,
+                    ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
+                })
                 .Where(pro => pro.CategoryId == categoryId).ToList();
-                
+
         }
 
-         // GET: api/Products/5
-         [HttpGet("{id}")]
+        // GET: api/Products/GetProducts_status=true/false
+        [HttpGet("GetProducts_status")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_status(bool status)
+        {
+            return _context.Products
+                .Select(x => new Product()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Code = x.Code,
+                    MetaTitle = x.MetaTitle,
+                    Description = x.Description,
+                    Image = x.Image,
+                    MoreImages = x.MoreImages,
+                    Price = x.Price,
+                    PromotionPrice = x.PromotionPrice,
+                    HotProduct = x.HotProduct,
+                    Quantity = x.Quantity,
+                    CategoryId = x.CategoryId,
+                    Detail = x.Detail,
+                    Warranty = x.Warranty,
+                    CreatedDate = x.CreatedDate,
+                    CreatedBy = x.CreatedBy,
+                    ModifiedDate = x.ModifiedDate,
+                    ModifiedBy = x.ModifiedBy,
+                    MetaKeywords = x.MetaKeywords,
+                    MetaDescriptions = x.MetaDescriptions,
+                    Status = x.Status,
+                    TopHot = x.TopHot,
+                    ViewCount = x.ViewCount,
+                    Link = x.Link,
+                    ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
+                })
+                .Where(pro => pro.Status == status).ToList();
+
+        }
+
+        // GET: api/Products/GetProducts_hotProduct=true/false
+        [HttpGet("GetProducts_hotProduct")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_hotProduct(bool hotProduct)
+        {
+            return _context.Products
+                .Select(x => new Product()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Code = x.Code,
+                    MetaTitle = x.MetaTitle,
+                    Description = x.Description,
+                    Image = x.Image,
+                    MoreImages = x.MoreImages,
+                    Price = x.Price,
+                    PromotionPrice = x.PromotionPrice,
+                    HotProduct = x.HotProduct,
+                    Quantity = x.Quantity,
+                    CategoryId = x.CategoryId,
+                    Detail = x.Detail,
+                    Warranty = x.Warranty,
+                    CreatedDate = x.CreatedDate,
+                    CreatedBy = x.CreatedBy,
+                    ModifiedDate = x.ModifiedDate,
+                    ModifiedBy = x.ModifiedBy,
+                    MetaKeywords = x.MetaKeywords,
+                    MetaDescriptions = x.MetaDescriptions,
+                    Status = x.Status,
+                    TopHot = x.TopHot,
+                    ViewCount = x.ViewCount,
+                    Link = x.Link,
+                    ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
+                })
+                .Where(pro => pro.HotProduct == hotProduct).ToList();
+
+        }
+
+        // GET: api/Products/5
+        [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

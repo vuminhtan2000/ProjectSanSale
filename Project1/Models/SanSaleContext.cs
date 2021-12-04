@@ -21,6 +21,7 @@ namespace Project1.Models
 
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Content> Contents { get; set; }
         public virtual DbSet<ContentTag> ContentTags { get; set; }
@@ -47,7 +48,7 @@ namespace Project1.Models
             {
                 entity.ToTable("Admin");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -81,13 +82,51 @@ namespace Project1.Models
                 entity.Property(e => e.NameCategory).HasMaxLength(50);
             });
 
+            modelBuilder.Entity<Client>(entity =>
+            {
+                entity.ToTable("Client");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Address).HasMaxLength(150);
+
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.Name).HasMaxLength(30);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(30)
+                    .IsFixedLength();
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(30)
+                    .IsFixedLength();
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.Clients)
+                    .HasForeignKey(d => d.CategoryId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Client_Category");
+            });
+
             modelBuilder.Entity<Contact>(entity =>
             {
                 entity.ToTable("Contact");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Content).HasColumnType("ntext");
+                entity.Property(e => e.Content).HasMaxLength(50);
+
+                entity.Property(e => e.Email).HasMaxLength(50);
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Content>(entity =>
@@ -108,8 +147,6 @@ namespace Project1.Models
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(500);
-
                 entity.Property(e => e.Detail).HasColumnType("ntext");
 
                 entity.Property(e => e.Image).HasMaxLength(250);
@@ -123,6 +160,10 @@ namespace Project1.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.MetaKeywords).HasMaxLength(250);
+
+                entity.Property(e => e.MetaTitle)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ModifiedBy)
                     .HasMaxLength(50)
@@ -154,7 +195,9 @@ namespace Project1.Models
 
                 entity.ToTable("ContentTag");
 
-                entity.Property(e => e.ContentId).HasColumnName("ContentID");
+                entity.Property(e => e.ContentId)
+                    .HasColumnName("ContentID")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.TagId)
                     .HasColumnName("TagID")
@@ -170,11 +213,15 @@ namespace Project1.Models
                     .HasColumnName("ID")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Content).HasColumnType("ntext");
             });
 
             modelBuilder.Entity<Image>(entity =>
             {
                 entity.ToTable("Image");
+
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.NameImage)
                     .HasColumnName("nameImage")
@@ -199,7 +246,7 @@ namespace Project1.Models
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Menus)
                     .HasForeignKey(d => d.TypeId)
-                    .HasConstraintName("FK__Menu__TypeID__34C8D9D1");
+                    .HasConstraintName("FK__Menu__TypeID__398D8EEE");
             });
 
             modelBuilder.Entity<MenuType>(entity =>
@@ -235,11 +282,9 @@ namespace Project1.Models
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.IncludedVat).HasColumnName("IncludedVAT");
-
                 entity.Property(e => e.Link)
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
+                    .HasMaxLength(200)
+                    .IsFixedLength();
 
                 entity.Property(e => e.MetaDescriptions)
                     .HasMaxLength(250)
@@ -257,7 +302,7 @@ namespace Project1.Models
 
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 
-                entity.Property(e => e.MoreImages).HasColumnType("xml");
+                entity.Property(e => e.MoreImages).HasMaxLength(50);
 
                 entity.Property(e => e.Name).HasMaxLength(250);
 
@@ -276,8 +321,7 @@ namespace Project1.Models
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
-                entity.HasKey(e => e.TokenId)
-                    .HasName("pk_refeshtoken");
+                entity.HasKey(e => e.TokenId);
 
                 entity.ToTable("RefreshToken");
 
@@ -298,7 +342,7 @@ namespace Project1.Models
                 entity.HasOne(d => d.Admin)
                     .WithMany(p => p.RefreshTokens)
                     .HasForeignKey(d => d.AdminId)
-                    .HasConstraintName("FK__RefreshTo__admin__5FB337D6");
+                    .HasConstraintName("FK__RefreshTo__admin__47DBAE45");
             });
 
             modelBuilder.Entity<Slide>(entity =>
