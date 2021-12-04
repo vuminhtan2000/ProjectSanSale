@@ -40,3 +40,62 @@ ul{
     font-size: 16px;
 
 }
+.card-horizontal-a {
+    display: flex;
+    width: 100%;
+    text-align: justify;
+}
+.img-square  {
+    margin:10px ;
+    width: 20%!important;
+    height: 200px;
+
+}
+.img-square img {
+    
+    width: 200px!important;
+    height: 200px;
+
+}
+.card-body1{
+    width: 80%;
+    height: 200px;
+}
+.card-title1{
+ 
+}
+.card-text1{
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #808080;
+    line-height: 1.8rem;
+    height: 75px;
+    margin:10px 10px 10px 0px ;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+.card{
+    height: 100%!important;
+}
+.card-baiviet{
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    transition: transfrom linear 0.1s;
+    will-change: transfrom;
+    color: black;
+    border-radius: 10px;
+}
+.card-baiviet:hover {
+    text-decoration: none;
+  
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.5);
+  }
