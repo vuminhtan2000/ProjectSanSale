@@ -55,7 +55,7 @@ class Menu extends Component {
   render() {
     return (
       <div className="navbar navbar-default">
-        <a className="nav navbar-nav-default" href={this.showMenus(menus)}></a>
+        <ul className="nav navbar-nav-default">{this.showMenus(menus)}</ul>
       </div>
     );
   }
