@@ -1,10 +1,8 @@
 import React, { Component, useReducer } from "react";
 // import { Line } from "react-chartjs-2";
 import Chart from "react-apexcharts";
-// import ApexCharts from "apexcharts";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import "./index.css";
-// import { Doughnut } from "react-chartjs-2";
 
 class DashDefault extends React.Component {
   componentDidMount() {
@@ -33,12 +31,9 @@ class DashDefault extends React.Component {
           series2: [
             {
               ...this.state.series2,
-              data: data.sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
-              .map((item) => item.viewCount),
-
+              data: data.map((item) => item.viewCount),
             },
           ],
-        
         });
         console.log(this.state.asdasd);
         console.log(this.state.asdasd.reduce((a, b) => (a = a + b), 0));
@@ -100,18 +95,18 @@ class DashDefault extends React.Component {
           text: "Tổng click mỗi tháng",
         },
         labels: [
-          // "Tháng 1",
-          // "Tháng 2",
-          // "Tháng 3",
-          // "Tháng 4",
-          // "Tháng 5",
-          // "Tháng 6",
-          // "Tháng 7",
-          // "Tháng 8",
-          // "Tháng 9",
-          // "Tháng 10",
-          // "Tháng 11",
-          // "Tháng 12",
+          "Tháng 1",
+          "Tháng 2",
+          "Tháng 3",
+          "Tháng 4",
+          "Tháng 5",
+          "Tháng 6",
+          "Tháng 7",
+          "Tháng 8",
+          "Tháng 9",
+          "Tháng 10",
+          "Tháng 11",
+          "Tháng 12",
         ],
       },
     };
@@ -172,11 +167,11 @@ class DashDefault extends React.Component {
               width={650}
               height={400}
             />
-            <div>
-              {/* {this.state.series2.map((item) => {
+            {/* <div>
+              {this.state.series2.map((item) => {
                 return [item.data.reduce((a, b) => (a = a + b))];
-              })} */}
-            </div>
+              })}
+            </div> */}
           </div>
         </div>
       </div>
