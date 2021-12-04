@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route,Switch } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Dashboard from "./pages/DashBoard/Dashboard";
 import PrivateRoute from "./Utils/PrivateRoute";
@@ -9,6 +9,7 @@ import Home from "./pages/HomePage/Trangchu/Home";
 import Baiviethome from "./pages/Baivietpage/Baiviet";
 import Backtotop from "./components/backtotop/backtotop";
 import Layout_chung from "./components/caterory_menu/showsanpham/Layout_chung";
+import Baiviet from "./pages/Baivietpage/baivietid";
 
 class App extends Component {
   render() {
@@ -17,7 +18,11 @@ class App extends Component {
         <div className="App">
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <Switch>
           <Route path="/baiviet" component={Baiviethome} />
+
+          <Route path="/post/:id" component={Baiviet} />
+          </Switch>
           <Route path="/layout_chung" component={Layout_chung} />
           <Route path="/" exact component={Home} />
           <Backtotop />

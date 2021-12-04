@@ -15,7 +15,7 @@ const initialFieldValues = {
   //moreImages: "",
   price: "0",
   promotionPrice: "0",
-  //includedVat: "",
+  hotProduct: "",
   quantity: "0",
   categoryId: "",
   detail: "",
@@ -99,6 +99,7 @@ export default function TaskFrom(props) {
       formData.append("description", values.description);
       formData.append("price", values.price);
       formData.append("promotionPrice", values.promotionPrice);
+      formData.append("hotProduct", values.hotProduct);
       formData.append("quantity", values.quantity);
       formData.append("categoryId", values.categoryId);
       formData.append("detail", values.detail);
@@ -392,7 +393,23 @@ export default function TaskFrom(props) {
                 </div>
 
                 <div class="row">
-                  <div class="col-md-12">
+                <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Hot Products </label>
+                      <select
+                        class="form-control"
+                        name="hotProduct"
+                        value={values.hotProduct}
+                        onChange={handleInputChange}
+                        style={{ height: 57.6 }}
+                      >
+                        <option>Chọn......</option>
+                        <option value={true}>True</option>
+                        <option value={false}>False</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-8 pl-1">
                     <div class="form-group">
                       <label>Mô tả</label>
                       <textarea
@@ -405,6 +422,7 @@ export default function TaskFrom(props) {
                       </textarea>
                     </div>
                   </div>
+           
                 </div>
                 <div class="row">
                   <div class="update ml-auto mr-auto">
