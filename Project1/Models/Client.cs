@@ -9,13 +9,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project1.Models
 {
-    public partial class Contact
+    public partial class Client
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Content { get; set; }
+        public int CategoryId { get; set; }
+        public int? Phone { get; set; }
+        public string Address { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public virtual Category Category { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
         [NotMapped]

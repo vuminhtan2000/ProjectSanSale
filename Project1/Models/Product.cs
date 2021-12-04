@@ -20,8 +20,8 @@ namespace Project1.Models
         public string MoreImages { get; set; }
         public decimal? Price { get; set; }
         public decimal? PromotionPrice { get; set; }
-        public bool? IncludedVat { get; set; }
-        public int Quantity { get; set; }
+        public bool? HotProduct { get; set; }
+        public int? Quantity { get; set; }
         public int CategoryId { get; set; }
         public string Detail { get; set; }
         public int? Warranty { get; set; }
@@ -35,10 +35,11 @@ namespace Project1.Models
         public DateTime? TopHot { get; set; }
         public int? ViewCount { get; set; }
         public string Link { get; set; }
+
+        public virtual Category Category { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
         [NotMapped]
         public string ImageSrc { get; set; }
-        public virtual Category Category { get; set; }
     }
 }
