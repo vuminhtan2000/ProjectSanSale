@@ -5,9 +5,9 @@ import "../Baiviet.css";
 import { RiAddCircleLine } from "react-icons/ri";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import parse from "html-react-parser";
-
-const API_URL = "https://localhost:5001/api";
-const API_URL1 = "https://localhost:5001/Images";
+import { API_URL } from "../../../constants/config";
+// const API_URL = "https://localhost:5001/api";
+const API_URL1 = "http://sansale.somee.com/Images";
 const UPLOAD_ENDPOINT = "Images/";
 const defaultImageSrc = "../assets/img/damir-bosnjak.jpg";
 
@@ -17,7 +17,7 @@ const initialFieldValues = {
   // //code: "",
   metaTitle: "",
   // description: "",
-  // image: "",
+  image: "",
   // //moreImages: "",
   // price: "",
   // promotionPrice: "",
@@ -58,6 +58,26 @@ export default function TaskForm_baiviet(props) {
       ...values,
       [name]: value,
     });
+  };
+  const showPreview = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let imageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (x) => {
+        setValues({
+          ...values,
+          imageFile,
+          imageSrc: x.target.result,
+        });
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      setValues({
+        ...values,
+        imageFile: null,
+        imageSrc: defaultImageSrc,
+      });
+    }
   };
 
   const validate = () => {
@@ -102,6 +122,8 @@ export default function TaskForm_baiviet(props) {
 
       formData.append("categoryId", values.categoryId);
       formData.append("tags", values.tags);
+      formData.append("image", values.image);
+      formData.append("imageFile", values.imageFile);
       addOrEdit(formData, resetForm);
     }
   };
@@ -161,7 +183,30 @@ export default function TaskForm_baiviet(props) {
         <RiAddCircleLine />
       </button>
       <div class="row" style={{ display: isVisible ? "block" : "none" }}>
+      <h2 style={{ textAlign: "center" }}>Thêm Bài Viết</h2>
         <form autoComplete="off" noValidate onSubmit={handleFormSubmit}>
+        <div class="row">
+        <label>Thêm ảnh đại diện</label>
+            <div class="col-md-8">
+            <div class="card-body">
+              <div class="author">
+                <img
+                  src={values.imageSrc}
+                  style={{ height: 250, width:1000, marginTop: 30 }}
+                />
+              </div>
+            </div>
+            <input
+            type="file"
+            accept="image/*"
+            className={"form-control-file" + applyErrorClass("imageSrc")}
+            onChange={showPreview}
+            id="image-uploader"
+          />
+            </div>
+            
+      <br></br>
+            </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -245,7 +290,7 @@ export default function TaskForm_baiviet(props) {
           </div>
           <div class="row">
             <div className="baiviet-ck">
-              <h2 style={{ textAlign: "center" }}>Thêm Bài Viết</h2>
+              <h3 style={{ textAlign: "center" }}>Thêm nội dung bài biết</h3>
               <CKEditor
                 onReady={(editor) => {
                   editor.ui
