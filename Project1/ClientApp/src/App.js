@@ -18,6 +18,7 @@ class App extends Component {
         <div className="App">
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          
           <Switch>
           <Route path="/baiviet" component={Baiviethome} />
 

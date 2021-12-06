@@ -32,7 +32,7 @@ const initialFieldValues = {
   // //modifiedBy: "",
   // metaKeywords: "",
   // metaDescriptions: "",
-  // status: "",
+  status: "",
   tags: "",
   // viewCount: "",
   // link: "",
@@ -121,6 +121,7 @@ export default function TaskForm_baiviet(props) {
       formData.append("content1", values.content1);
 
       formData.append("categoryId", values.categoryId);
+      formData.append("status", values.status);
       formData.append("tags", values.tags);
       formData.append("image", values.image);
       formData.append("imageFile", values.imageFile);
@@ -236,7 +237,23 @@ export default function TaskForm_baiviet(props) {
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+          <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Trạng Thái </label>
+                      <select
+                        class="form-control"
+                        name="status"
+                        value={values.status}
+                        onChange={handleInputChange}
+                        style={{ height: 57.6 }}
+                      >
+                        <option>Chọn......</option>
+                        <option value={true}>True</option>
+                        <option value={false}>False</option>
+                      </select>
+                    </div>
+                  </div>
+            <div class="col-md-4 pl-1">
               <div class="form-group">
                 <label>Tag</label>
                 {/* <input type="text" class="form-control" placeholder="category" name="categoryId" value={values.categoryId} onChange={handleInputChange}/> */}
@@ -254,7 +271,7 @@ export default function TaskForm_baiviet(props) {
                 </select>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4 pl-1">
               <div class="form-group">
                 <label>Category ID</label>
                 {/* <input type="text" class="form-control" placeholder="category" name="categoryId" value={values.categoryId} onChange={handleInputChange}/> */}
