@@ -5,6 +5,47 @@ import "./cateproduct.css";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 // import "./style.css";
+const onclick = (
+  e,
+  id,
+  name,
+  metaTitle,
+  description,
+  image,
+  price,
+  promotionPrice,
+  categoryId,
+  quantity,
+  detail,
+  metaKeywords,
+  metaDescriptions,
+  status,
+  viewCount,
+  link,
+  imageFile,
+  imageSrc
+) => {
+  axios.put(`${API_URL}/Products/body/${id}`, {
+    id,
+    name,
+    metaTitle,
+    description,
+    image,
+    price,
+    promotionPrice,
+    categoryId,
+    quantity,
+    detail,
+    metaKeywords,
+    metaDescriptions,
+    status,
+    viewCount: viewCount + 1,
+    link,
+    imageFile,
+    imageSrc,
+  });
+ 
+};
 const renderData = (data) => {
   return (
     <div className="home-product">
