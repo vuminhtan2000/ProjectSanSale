@@ -109,7 +109,13 @@ namespace Project1.Controllers
             {
                 return BadRequest();
             }
-           
+            if (content.ImageFile != null)
+            {
+                DeleteImage(content.Image);
+                content.Image = await SaveImage(content.ImageFile);
+            }
+
+
             _context.Entry(content).State = EntityState.Modified;
 
             try

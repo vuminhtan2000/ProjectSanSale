@@ -171,6 +171,43 @@ namespace Project1.Controllers
                 .Where(pro => pro.HotProduct == hotProduct).ToList();
 
         }
+        [HttpGet("GetProducts_day")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_day(DateTime createdDate, bool hotProduct)
+        {
+
+            return _context.Products
+                .Select(x => new Product()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Code = x.Code,
+                    MetaTitle = x.MetaTitle,
+                    Description = x.Description,
+                    Image = x.Image,
+                    MoreImages = x.MoreImages,
+                    Price = x.Price,
+                    PromotionPrice = x.PromotionPrice,
+                    HotProduct = x.HotProduct,
+                    Quantity = x.Quantity,
+                    CategoryId = x.CategoryId,
+                    Detail = x.Detail,
+                    Warranty = x.Warranty,
+                    CreatedDate = x.CreatedDate,
+                    CreatedBy = x.CreatedBy,
+                    ModifiedDate = x.ModifiedDate,
+                    ModifiedBy = x.ModifiedBy,
+                    MetaKeywords = x.MetaKeywords,
+                    MetaDescriptions = x.MetaDescriptions,
+                    Status = x.Status,
+                    TopHot = x.TopHot,
+                    ViewCount = x.ViewCount,
+                    Link = x.Link,
+                    ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
+                })
+                .Where(pro => pro.CreatedDate == createdDate
+                       &&  pro.HotProduct == hotProduct ).ToList();
+
+        }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
