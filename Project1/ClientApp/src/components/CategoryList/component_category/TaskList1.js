@@ -7,6 +7,10 @@ export default function TaskList1(props) {
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-15">
         <table class="table table-bordered table-hover">
           <thead>
+            <div>
+              <h4 class="card-title"> Categories </h4>
+            </div>
+
             <tr>
               <th class="text-center">STT</th>
               <th class="text-center">Tên danh mục</th>
@@ -16,46 +20,71 @@ export default function TaskList1(props) {
             </tr>
           </thead>
           <tbody>
-            {props.employeeList.map((item) => {
-              return (
-                <tr>
-                  <td>{item.id}</td>
-                  <td>{item.nameCategory}</td>
-                  <td>{item.metaTitle}</td>
-                  <td class="text-center">
-                    <span
-                      className={
-                        item.status == true
-                          ? "label label-success"
-                          : "label label-warning"
-                      }
-                    >
-                      {item.status == true ? "Còn" : "Hết"}
-                    </span>
-                  </td>
-                  <td class="text-center">
-                    <button
-                      type="button"
-                      class="btn btn-warning"
-                      onClick={() => {
-                        props.showRecordDetails(item);
-                        props.setIsVisible(true);
-                      }}
-                    >
-                      <span class="fa fa-pencil mr-5"></span>Sửa
-                    </button>
-                    &nbsp;
-                    <button
-                      type="button"
-                      class="btn btn-danger"
-                      onClick={(e) => props.onDelete(e, parseInt(item.id))}
-                    >
-                      Xóa
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {props.employeeList
+              .sort((a, b) => {
+                if (props.number == 1) {
+                  return a.nameCategory.toLowerCase() >
+                    b.nameCategory.toLowerCase()
+                    ? 1
+                    : -1;
+                } else if (props.number == -1) {
+                  return a.nameCategory.toLowerCase() <
+                    b.nameCategory.toLowerCase()
+                    ? 1
+                    : -1;
+                }
+              })
+              .filter((val) => {
+                if (props.search == "") {
+                  return val;
+                } else if (
+                  val.nameCategory
+                    .toLowerCase()
+                    .includes(props.search.toLowerCase())
+                ) {
+                  return val;
+                }
+              })
+              .map((item) => {
+                return (
+                  <tr>
+                    <td>{item.id}</td>
+                    <td>{item.nameCategory}</td>
+                    <td>{item.metaTitle}</td>
+                    <td class="text-center">
+                      <span
+                        className={
+                          item.status == true
+                            ? "label label-success"
+                            : "label label-warning"
+                        }
+                      >
+                        {item.status == true ? "Còn" : "Hết"}
+                      </span>
+                    </td>
+                    <td class="text-center">
+                      <button
+                        type="button"
+                        class="btn btn-warning"
+                        onClick={() => {
+                          props.showRecordDetails(item);
+                          props.setIsVisible(true);
+                        }}
+                      >
+                        <span class="fa fa-pencil mr-5"></span>Sửa
+                      </button>
+                      &nbsp;
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onClick={(e) => props.onDelete(e, parseInt(item.id))}
+                      >
+                        Xóa
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

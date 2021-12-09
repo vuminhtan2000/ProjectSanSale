@@ -4,6 +4,7 @@ import TaskForm from "../ProductList/component_product/TaskForm";
 import TaskList from "./component_product/TaskList";
 import Control from "./component_product/Control";
 import { API_URL } from "../../constants/config";
+import "./Product.css";
 
 export default function ProductList(props) {
   const [employeeList, setEmployeeList] = useState([]);
@@ -11,6 +12,7 @@ export default function ProductList(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [search, setSearch] = useState("");
   const [number, setNumber] = useState(0);
+  const [truefalse, setTrueFalse] = useState();
   const [url, setUrl] = useState();
 
   useEffect(() => {
@@ -86,9 +88,10 @@ export default function ProductList(props) {
           setIsVisible={setIsVisible}
         />
         <Control
-          employeeList={employeeList}
+          // employeeList={employeeList}
           setSearch={setSearch}
           setNumber={setNumber}
+          setTrueFalse={setTrueFalse}
         />
         <TaskList
           showRecordDetails={showRecordDetails}
@@ -98,6 +101,7 @@ export default function ProductList(props) {
           isVisible={isVisible}
           search={search}
           number={number}
+          truefalse={truefalse}
         />
       </div>
     </>

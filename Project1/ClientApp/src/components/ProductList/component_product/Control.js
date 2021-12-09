@@ -9,7 +9,11 @@ function Control(props) {
       <Search employeeList={props.employeeList} setSearch={props.setSearch} />
 
       {/* 2.2. Sắp xếp a-z */}
-      <Sort employeeList={props.employeeList} setNumber={props.setNumber} />
+      <Sort
+        employeeList={props.employeeList}
+        setNumber={props.setNumber}
+        setTrueFalse={props.setTrueFalse}
+      />
     </div>
   );
 }
