@@ -279,21 +279,8 @@ function Cateproduct(props) {
                 </button>
                 <button class="home-filler_btn btn-cate ">Mới Nhất</button>
                 <button class="home-filler_btn btn-cate ">Bán Chạy</button>
-                {/* <select
-                  type="text"
-                  class="select-input"
-                  name="categoryId"
-                  value={values}
-                  onChange={handleChange}
-                >
-                  <option value={0} selected>
-                    0 . All
-                  </option>
-                  <option value={1}>1. Thiết Bị Điển Tử</option>
-                  <option value={2}>2. Quần Áo </option>
-                  <option value={3}>3. Food</option>
-                  <option value={4}>4. Nội Thất</option>
-                </select>
+  
+
                 <div className="home-filter__page">
                   <span className="home-filler__page-num">
                     <span className=" ">{currentPage}</span>
