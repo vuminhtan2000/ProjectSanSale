@@ -44,7 +44,6 @@ const onclick = (
     imageFile,
     imageSrc,
   });
- 
 };
 const renderData = (data) => {
   return (
@@ -267,10 +266,8 @@ function Cateproduct(props) {
 
   return (
     <>
-
       {/* <h1>Todo List</h1> <br /> */}
       <div className="app_container">
-        
         <div className="grid">
           <div className="grid__row">
             <div className="grid__column-12">
@@ -292,11 +289,11 @@ function Cateproduct(props) {
                   <option value={0} selected>
                     0 . All
                   </option>
-                  <option value="01">1. Thiết Bị Điển Tử</option>
-                  <option value="02">2. Quần Áo </option>
-                  <option value="03">3. Food</option>
-                  <option value="04">4. Nội Thất</option>
-                </select> */}
+                  <option value={1}>1. Thiết Bị Điển Tử</option>
+                  <option value={2}>2. Quần Áo </option>
+                  <option value={3}>3. Food</option>
+                  <option value={4}>4. Nội Thất</option>
+                </select>
                 <div className="home-filter__page">
                   <span className="home-filler__page-num">
                     <span className=" ">{currentPage}</span>

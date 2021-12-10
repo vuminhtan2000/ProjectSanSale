@@ -9,6 +9,8 @@ export default function CategoryList() {
   const [employeeList, setEmployeeList] = useState([]);
   const [recordForEdit, setRecordForEdit] = useState(null);
   const [isDisplayForm, setIsDisplayForm] = useState(false);
+  const [search, setSearch] = useState("");
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
     refreshEmployeeList();
@@ -82,13 +84,19 @@ export default function CategoryList() {
         setIsVisible={setIsVisible}
       />
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <Control1 />
+        <Control1
+          // employeeList={employeeList}
+          setSearch={setSearch}
+          setNumber={setNumber}
+        />
         <TaskList1
           showRecordDetails={showRecordDetails}
           onDelete={onDelete}
           employeeList={employeeList}
           setIsVisible={setIsVisible}
           isVisible={isVisible}
+          search={search}
+          number={number}
         />
       </div>
     </div>

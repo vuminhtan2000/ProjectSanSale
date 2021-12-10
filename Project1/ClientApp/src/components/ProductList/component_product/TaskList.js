@@ -35,11 +35,7 @@ export default function TaskList(props) {
                           ? 1
                           : -1;
                       }
-                      {
-                        /* a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1 */
-                      }
                     })
-
                     .filter((val) => {
                       if (props.search == "") {
                         return val;
@@ -48,6 +44,10 @@ export default function TaskList(props) {
                           .toLowerCase()
                           .includes(props.search.toLowerCase())
                       ) {
+                        return val;
+                      } else if (props.truefalse == true) {
+                        return val;
+                      } else if (props.truefalse == false) {
                         return val;
                       }
                     })

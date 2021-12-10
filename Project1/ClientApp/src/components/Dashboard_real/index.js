@@ -95,18 +95,18 @@ class DashDefault extends React.Component {
           text: "Tổng click mỗi tháng",
         },
         labels: [
-          "Tháng 1",
-          "Tháng 2",
-          "Tháng 3",
-          "Tháng 4",
-          "Tháng 5",
-          "Tháng 6",
-          "Tháng 7",
-          "Tháng 8",
-          "Tháng 9",
-          "Tháng 10",
-          "Tháng 11",
-          "Tháng 12",
+          "tháng 1",
+          "tháng 2",
+          "tháng 3",
+          "tháng 4",
+          "tháng 5",
+          "tháng 6",
+          "tháng 7",
+          "tháng 8",
+          "tháng 9",
+          "tháng 10",
+          "tháng 11",
+          "tháng 12",
         ],
       },
     };
@@ -164,7 +164,7 @@ class DashDefault extends React.Component {
               options={this.state.options2}
               series={this.state.series2}
               type="area"
-              width={650}
+              width={660}
               height={400}
             />
             {/* <div>

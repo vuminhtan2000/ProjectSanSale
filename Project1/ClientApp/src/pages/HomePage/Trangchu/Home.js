@@ -20,17 +20,17 @@ class Home extends Component {
         <Categorymenu />
         <Dealsock />
         <div class="clearfix vi-header">
-    <h3 class="vi-left-title pull-left">Sản phẩm Hot Hằng Ngày</h3>
-    <div class="vi-right-link pull-right">
-    <a class="vi-more" href="/baiviet">Xem tất cả »</a>
-    </div>
-    </div>
+          <h3 class="vi-left-title pull-left">Sản phẩm Hot Hằng Ngày</h3>
+          <div class="vi-right-link pull-right">
+            <a class="vi-more" href="/baiviet">
+              Xem tất cả »
+            </a>
+          </div>
+        </div>
         <Cateproduct />
   
         <Baiviethomeproduct/>
-        
         <Footer />
-        
       </div>
     );
   }
