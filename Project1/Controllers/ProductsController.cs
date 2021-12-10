@@ -65,7 +65,7 @@ namespace Project1.Controllers
         [HttpGet("GetProducts_categoryId")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts_categoryId(int categoryId)
         {
-            return _context.Products
+            return await _context.Products
                 .Select(x => new Product()
                 {
                     Id = x.Id,
@@ -94,7 +94,7 @@ namespace Project1.Controllers
                     Link = x.Link,
                     ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
                 })
-                .Where(pro => pro.CategoryId == categoryId).ToList();
+                .Where(pro => pro.CategoryId == categoryId).ToListAsync();
 
         }
 
@@ -102,7 +102,7 @@ namespace Project1.Controllers
         [HttpGet("GetProducts_status")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts_status(bool status)
         {
-            return _context.Products
+            return await _context.Products
                 .Select(x => new Product()
                 {
                     Id = x.Id,
@@ -131,7 +131,7 @@ namespace Project1.Controllers
                     Link = x.Link,
                     ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
                 })
-                .Where(pro => pro.Status == status).ToList();
+                .Where(pro => pro.Status == status).ToListAsync();
 
         }
 
@@ -139,7 +139,7 @@ namespace Project1.Controllers
         [HttpGet("GetProducts_hotProduct")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts_hotProduct(bool hotProduct)
         {
-            return _context.Products
+            return await _context.Products
                 .Select(x => new Product()
                 {
                     Id = x.Id,
@@ -168,14 +168,14 @@ namespace Project1.Controllers
                     Link = x.Link,
                     ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
                 })
-                .Where(pro => pro.HotProduct == hotProduct).ToList();
+                .Where(pro => pro.HotProduct == hotProduct).ToListAsync();
 
         }
         [HttpGet("GetProducts_day")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_day(DateTime createdDate, bool hotProduct)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_day(DateTime startDate, DateTime endDate, bool hotProduct)
         {
 
-            return _context.Products
+            return await _context.Products
                 .Select(x => new Product()
                 {
                     Id = x.Id,
@@ -204,8 +204,10 @@ namespace Project1.Controllers
                     Link = x.Link,
                     ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
                 })
-                .Where(pro => pro.CreatedDate == createdDate
-                       &&  pro.HotProduct == hotProduct ).ToList();
+                .Where(pro => pro.CreatedDate >= startDate 
+                           && pro.CreatedDate <= endDate
+                           && pro.HotProduct == hotProduct)
+                .ToListAsync();
 
         }
 

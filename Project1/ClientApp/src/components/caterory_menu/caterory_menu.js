@@ -182,7 +182,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="#">
+            <a href="http://sansale.somee.com/layout_chung/quanao">
               <div className="cardimg" key={3}>
                 <div className="img-icon">
                   <img src={categroty[2]} alt="iconcomputer" />
@@ -192,7 +192,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="#">
+            <a href="http://sansale.somee.com/layout_chung/giaydep">
               <div className="cardimg" key={4}>
                 <div className="img-icon">
                   <img src={categroty[3]} alt="iconcomputer" />
@@ -202,7 +202,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="#">
+            <a href="http://sansale.somee.com/layout_chung/cosmectic">
               <div className="cardimg" key={5}>
                 <div className="img-icon">
                   <img src={categroty[4]} alt="iconcomputer" />
@@ -212,7 +212,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="#">
+            <a href="http://sansale.somee.com/layout_chung/dongho">
               <div className="cardimg" key={6}>
                 <div className="img-icon">
                   <img src={categroty[5]} alt="iconcomputer" />
@@ -222,7 +222,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="#">
+            <a href="http://sansale.somee.com/layout_chung/napthe">
               <div className="cardimg" key={7}>
                 <div className="img-icon">
                   <img src={categroty[6]} alt="iconcomputer" />

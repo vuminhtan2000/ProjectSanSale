@@ -8,9 +8,15 @@ function Sort(props) {
   const number__1 = () => {
     props.setNumber(-1);
   };
+  const _true = () => {
+    props.setTrueFalse(true);
+  };
+  const _false = () => {
+    props.setTrueFalse(false);
+  };
   return (
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <div class="dropdown" style={{ marginTop: 10, padding: 10 }}>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 sort_button">
+      <div class="dropdown">
         <button
           class="btn btn-primary dropdown-toggle"
           type="button"
@@ -25,24 +31,27 @@ function Sort(props) {
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
           <li>
             <a role="button" onClick={number_1}>
-              <span class="fa fa-sort-alpha-asc pr-5">Tên A-Z</span>
+              <span class="fa fa-sort-alpha-asc pr-5"> Tên A-Z</span>
             </a>
           </li>
           <li>
             <a role="button" onClick={number__1}>
-              <span class="fa fa-sort-alpha-desc pr-5">Tên Z-A</span>
+              <span class="fa fa-sort-alpha-desc pr-5"> Tên Z-A</span>
+            </a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <a role="button" onClick={_true}>
+              Còn
+            </a>
+          </li>
+          <li>
+            <a role="button" onClick={_false}>
+              Hết
             </a>
           </li>
         </ul>
-        {/* {props.employeeList
-          .Sort((a, b) => (a.name > b.name ? 1 : -1))
-          .map((item, i) => {
-            return (
-              <td class="row" key={i}>
-                <td>{item.name}</td>
-              </td>
-            );
-          })} */}
+        {console.log(_true)}
       </div>
     </div>
   );

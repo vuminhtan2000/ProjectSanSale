@@ -32,5 +32,10 @@ td {
   color: #dc3545;
   background-color: #fff;
 }
-.dropdown-toggle {
+.dropdown {
+  margin: 5px 1px;
+}
+
+.sort_button {
+  padding: 15px;
 }
