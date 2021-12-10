@@ -11,12 +11,12 @@ export default function footer() {
           <MDBCol md="4" className="logo-footer">
             <h5 className="title-footer">Hợp tác cùng</h5>
             <div className="logo-footer-logo">
-              <img className="logo1" src="./img/logosp.png"></img>
-              <img className="logo1" src="./img/logoLazada.png"></img>
-              <img className="logo1" src="./img/logo-sendo.png"></img>
+              <img className="logo1" src="../img/logosp.png"></img>
+              <img className="logo1" src="../img/logoLazada.png"></img>
+              <img className="logo1" src="../img/logo-sendo.png"></img>
             </div>
             <div className="logo-footer-logo1">
-              <img className="logo2" src="./img/logoactrade.png"></img>
+              <img className="logo2" src="../img/logoactrade.png"></img>
             </div>
           </MDBCol>
           <MDBCol md="3">
@@ -67,9 +67,9 @@ export default function footer() {
           <MDBCol md="2">
             <h5 className="title-footer">Group</h5>
             <div className="logo-footer-logo-mxh">
-              <img className="logo-mxh" src="./img/facebook.png"></img>
-              <img className="logo-mxh" src="./img/instagram.png"></img>
-              <img className="logo-mxh" src="./img/telegram.png"></img>
+              <img className="logo-mxh" src="../img/facebook.png"></img>
+              <img className="logo-mxh" src="../img/instagram.png"></img>
+              <img className="logo-mxh" src="../img/telegram.png"></img>
             </div>
           </MDBCol>
         </MDBRow>

@@ -49,7 +49,6 @@ export default function Baiviethome() {
       <div className="container-bv">
         <div className="container">
           <div className="baiviet">
-          <h2 style={{ textAlign: "center" }}>BÀI VIẾT</h2>
           {/* <Link to="/a">taniarascia</Link> on GitHub. */}
             {employeeList.map((item) => {
               return (

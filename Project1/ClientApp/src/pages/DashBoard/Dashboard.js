@@ -19,6 +19,8 @@ import BaiViet from "../../components/BaiViet/Baiviet";
 import Slides from "../../components/sideconf/Sideconf";
 import { API_URL } from "../../constants/config";
 import DashDefault from "../../components/Dashboard_real";
+import Productlist from "./Productlist";
+// import TaskListproduct from "../../components/ProductList/component_product/TaskListproduct";
 
 function Dashboard(props) {
   const [isVisible, setIsVisible] = useState(true);
@@ -49,6 +51,12 @@ function Dashboard(props) {
       to: "/dashboard",
       exact: true,
       icon: <BsCartDashFill />,
+    },
+    {
+      name: "Trang chủ",
+      to: "/dashboard/trangchu",
+      exact: true,
+      icon: <BsShop />,
     },
     {
       name: "Product",
@@ -280,6 +288,9 @@ function Dashboard(props) {
               <Route path="/dashboard/baiviet" component={BaiViet} />
               <Route path="/dashboard/slides" component={Slides} />
               <Route path="/dashboard/dashdefault" component={DashDefault} />
+              <Route path="/dashboard/trangchu" component={Productlist} />
+
+              
               <div class="card col-md-3 align-items-center  " id="info">
                 <div class="card-header">
                   <h4 class="card-title">Team Members</h4>

@@ -187,14 +187,14 @@ function Cateproduct(props) {
     refreshEmployeeList_pro();
   }, []);
 
-  const employeeAPI = (
-    url = `${API_URL}/Products/GetProducts_categoryId?categoryId=${values}`
-  ) => {
-    return {
-      fetchAll: () => axios.get(url),
-      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
-    };
-  };
+  // const employeeAPI = (
+  //   url = `${API_URL}/Products/GetProducts_categoryId?categoryId=${values}`
+  // ) => {
+  //   return {
+  //     fetchAll: () => axios.get(url),
+  //     update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+  //   };
+  // };
 
   const employeeAPI_pro = (url = `${API_URL}/Products/`) => {
     return {
@@ -204,25 +204,25 @@ function Cateproduct(props) {
   };
 
   function refreshEmployeeList_pro() {
-    if (values == 0) {
+    // if (values == 0) {
       employeeAPI_pro()
         .fetchAll()
         .then((res) => {
           setData(res.data);
         })
         .catch((err) => console.log(err));
-    } else {
-      employeeAPI()
-        .fetchAll()
-        .then((res) => {
-          setData(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
+    // } else {
+    //   employeeAPI()
+    //     .fetchAll()
+    //     .then((res) => {
+    //       setData(res.data);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
   }
 
   const getInitialState = () => {
-    const value = 0;
+    const value = "01";
     return value;
   };
 
@@ -282,7 +282,7 @@ function Cateproduct(props) {
                 </button>
                 <button class="home-filler_btn btn-cate ">Mới Nhất</button>
                 <button class="home-filler_btn btn-cate ">Bán Chạy</button>
-                <select
+                {/* <select
                   type="text"
                   class="select-input"
                   name="categoryId"
@@ -292,11 +292,11 @@ function Cateproduct(props) {
                   <option value={0} selected>
                     0 . All
                   </option>
-                  <option value={1}>1. Thiết Bị Điển Tử</option>
-                  <option value={2}>2. Quần Áo </option>
-                  <option value={3}>3. Food</option>
-                  <option value={4}>4. Nội Thất</option>
-                </select>
+                  <option value="01">1. Thiết Bị Điển Tử</option>
+                  <option value="02">2. Quần Áo </option>
+                  <option value="03">3. Food</option>
+                  <option value="04">4. Nội Thất</option>
+                </select> */}
                 <div className="home-filter__page">
                   <span className="home-filler__page-num">
                     <span className=" ">{currentPage}</span>
