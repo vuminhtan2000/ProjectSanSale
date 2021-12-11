@@ -13,7 +13,7 @@ const onclick = (
   description,
   image,
   price,
-  promotionPrice,
+  promotionPrice, 
   categoryId,
   quantity,
   detail,
@@ -195,7 +195,7 @@ function Cateproduct(props) {
   //   };
   // };
 
-  const employeeAPI_pro = (url = `${API_URL}/Products/`) => {
+  const employeeAPI_pro = (url = `${API_URL}/Products/GetProducts_hotProduct?hotProduct=true`) => {
     return {
       fetchAll: () => axios.get(url),
       update: (id, updatedRecord) => axios.put(url + id, updatedRecord),

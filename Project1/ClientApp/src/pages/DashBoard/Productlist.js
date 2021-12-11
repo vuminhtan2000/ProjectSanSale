@@ -12,35 +12,66 @@ export default function Productlist() {
   const [rememberUser, setRememberUser] = useState(true)
   useEffect(() => {
     refreshEmployeeList();
-  }, []);
-  const saveclick = (
-
-  ) => {
-    axios.put(`${API_URL}/Products/54`, {
-        id:employeeList.id,
-        name:employeeList.name,
-        metaTitle:employeeList.metaTitle,
-        description:employeeList.description,
-        image:employeeList.image,
-        price:employeeList.price,
-        promotionPrice:employeeList.promotionPrice,
-        hotProduct:employeeList.hotProduct,
-        categoryId:employeeList.categoryId,
-        quantity:employeeList.quantity,
-        detail:employeeList.detail,
-        metaKeywords:employeeList.metaKeywords,
-        metaDescriptions:employeeList.metaDescriptions,
-        status:employeeList.status,
-        viewCount: employeeList.viewCount,
-        link:employeeList.link,
-        imageFile:employeeList.imageFile,
-        imageSrc:employeeList.imageSrc,
-    }).then(resp => {
-        console.log('loi')
-        console.log(resp.data)
-      });;
    
-  };
+  }, []);
+  const onclick = (
+    e,
+    id ,
+    name ,
+    code,
+    metaTitle ,
+    description,
+    image ,
+    moreImages ,
+    price,
+    promotionPrice ,
+    hotProduct ,
+    quantity ,
+    categoryId ,
+    detail,
+    warranty ,
+    createdDate,
+    createdBy ,
+    modifiedDate ,
+    modifiedBy ,
+    metaKeywords ,
+    metaDescriptions,
+    status ,
+    topHot  ,
+    viewCount ,
+    link ,
+    imageSrc 
+  )=> {
+    axios.put(`${API_URL}/Products/body/${id}`, {
+      id ,
+      name ,
+      code,
+      metaTitle ,
+      description,
+      image ,
+      moreImages ,
+      price,
+      promotionPrice ,
+      hotProduct: hotProduct=false?(hotProduct==true):(hotProduct ==false) ,
+      quantity ,
+      categoryId ,
+      detail,
+      warranty ,
+      createdDate,
+      createdBy ,
+      modifiedDate ,
+      modifiedBy ,
+      metaKeywords ,
+      metaDescriptions,
+      status ,
+      topHot  ,
+      viewCount ,
+      link ,
+      imageSrc ,
+    })
+
+  }
+  ;
   const employeeAPI = (url = `${API_URL}/Products/`) => {
     return {
       fetchAll: () => axios.get(url),
@@ -51,6 +82,7 @@ export default function Productlist() {
   };
 
   function refreshEmployeeList() {
+    
     employeeAPI()
       .fetchAll()
       .then((res) => {
@@ -156,7 +188,41 @@ export default function Productlist() {
                             type="checkbox"
                             id={item.id}
                             checked={item.hotProduct}
-                            onChange={saveclick}
+                           
+                            onClick={(e) =>
+                              onclick(
+                                e,
+                                parseInt(item.id),
+                                item.name ,
+                                item.code,
+                                item.metaTitle ,
+                                item.description,
+                                item.image ,
+                                item.moreImages ,
+                                item.price,
+                                item.promotionPrice ,
+                                item.hotProduct ,
+                                item.quantity ,
+                                item.categoryId ,
+                                item.detail,
+                                item.warranty ,
+                                item.createdDate,
+                                item.createdBy ,
+                                item.modifiedDate ,
+                                item.modifiedBy ,
+                                item.metaKeywords ,
+                                item.metaDescriptions,
+                                item.status ,
+                                item.topHot  ,
+                                item.viewCount ,
+                                item.link ,
+                                item.imageSrc 
+                              )
+                            
+                             
+                            }
+                            
+                         
                             /></td>
                           <td>{item.id}</td>
                           <td>{item.name}</td>

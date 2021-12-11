@@ -20,7 +20,7 @@ const initialFieldValues = {
   // //code: "",
   metaTitle: "",
   // description: "",
-  image: "",
+  image: "",  
   // //moreImages: "",
   // price: "",
   // promotionPrice: "",
