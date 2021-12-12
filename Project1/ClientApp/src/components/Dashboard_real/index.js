@@ -25,23 +25,25 @@ class DashDefault extends React.Component {
                 return item.metaKeywords;
               }),
           },
-          asdasd: data.map((item) => item.viewCount),
-          // asdasd: data.reduce((a, b) => (a = a + b)),
-          // .reduce((a, b) => (a = a + b)),
+          asdasd: data
+            .map((item) => item.viewCount)
+            .reduce((a, b) => (a = a + b), 0),
           series2: [
             {
               ...this.state.series2,
-              data: data.map((item) => item.viewCount),
+              data: data.map(
+                (item) => [item.viewCount].reduce((a, b) => (a = a + b), 0)
+                // [[item.viewCount].reduce((a, b) => (a = a + b), 0),]
+              ),
             },
           ],
         });
         console.log(this.state.asdasd);
-        console.log(this.state.asdasd.reduce((a, b) => (a = a + b), 0));
-        // console.log(this.state.series2);
+        console.log(this.state.series2);
 
         console.log(
           this.state.series2.map((item) => {
-            return [item.data.reduce((a, b) => (a = a + b))];
+            return [item.data.reduce((a, b) => (a = a + b), 0)];
           })
         );
       });
@@ -155,7 +157,7 @@ class DashDefault extends React.Component {
               options={this.state.options1}
               series={this.state.series1}
               type="donut"
-              width={420}
+              width={450}
             />
           </div>
           <div className="featured_Chart">
@@ -164,7 +166,7 @@ class DashDefault extends React.Component {
               options={this.state.options2}
               series={this.state.series2}
               type="area"
-              width={660}
+              width={650}
               height={400}
             />
             {/* <div>

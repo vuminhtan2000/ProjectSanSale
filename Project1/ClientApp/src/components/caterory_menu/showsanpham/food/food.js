@@ -180,7 +180,7 @@ export default function Food(props) {
   }
 
   const getInitialState = () => {
-    const value = 1;
+    const value = 2;
     return value;
   };
 
@@ -249,6 +249,7 @@ export default function Food(props) {
                     <option value={2}>2. Quần Áo </option>
                     <option value={3}>3. Food</option>
                     <option value={4}>4. Nội Thất</option>
+                    <option value={5}>5. Cosmetic</option>
                   </select>
                   <div className="home-filter__page">
                     <span className="home-filler__page-num">

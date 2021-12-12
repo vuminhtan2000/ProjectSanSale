@@ -9,15 +9,17 @@ export default function TaskList(props) {
           <div class="card-header">
             <h4 class="card-title"> Product </h4>
           </div>
-          <div class="card-body">
+          <div class="card-body" style={{ textAlign: "center" }}>
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
                   <th>Id</th>
-                  <th>Tên</th>
+                  <th width="350px" style={{ textAlign: "none" }}>
+                    Tên
+                  </th>
                   <th>Giá Gốc</th>
                   <th>Giá Bán</th>
-                  <th>Lượng Truy Cập</th>
+                  <th>Clicked</th>
                   <th>Hàng Tồn</th>
                   <th>Hình Ảnh</th>
                   <th>Trạng Thái</th>

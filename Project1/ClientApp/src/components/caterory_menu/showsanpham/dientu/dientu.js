@@ -180,7 +180,7 @@ export default function DienTu(props) {
   }
 
   const getInitialState = () => {
-    const value = 0;
+    const value = 1;
     return value;
   };
 
@@ -242,13 +242,12 @@ export default function DienTu(props) {
                     value={values}
                     onChange={handleChange}
                   >
-                    <option value={0} selected>
-                      0 . All
-                    </option>
+                    <option value={0}>0 . All</option>
                     <option value={1}>1. Thiết Bị Điển Tử</option>
-                    <option value={2}>2. Quần Áo </option>
-                    <option value={3}>3. Food</option>
-                    <option value={4}>4. Nội Thất</option>
+                    <option value={2}>2. Food </option>
+                    <option value={3}>3. Quần áo</option>
+                    <option value={4}>4. Giày dép</option>
+                    <option value={5}>5. Cosmestic</option>
                   </select>
                   <div className="home-filter__page">
                     <span className="home-filler__page-num">

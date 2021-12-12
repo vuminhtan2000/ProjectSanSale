@@ -48,7 +48,7 @@ export default function TaskList1(props) {
               .map((item) => {
                 return (
                   <tr>
-                    <td>{item.id}</td>
+                    <td style={{ textAlign: "center" }}>{item.id}</td>
                     <td>{item.nameCategory}</td>
                     <td>{item.metaTitle}</td>
                     <td class="text-center">
