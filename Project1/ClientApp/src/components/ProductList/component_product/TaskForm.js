@@ -299,8 +299,10 @@ export default function TaskFrom(props) {
                         <option value={1}>1 . Thiết Bị Điển Tử</option>
                         <option value={2}>2 . Quẩn Áo </option>
                         <option value={3}>3 . Food</option>
-                        <option value={4}>4 . Quần áo</option>
+                        <option value={4}>4 . Giày dép</option>
                         <option value={5}>5 . Cosmectic</option>
+                        {/* <option value={6}>5 . Đồng hồ</option> */}
+                        {/* <option value={7}>5 . Nạp thẻ</option> */}
                       </select>
                     </div>
                   </div>
@@ -393,7 +395,7 @@ export default function TaskFrom(props) {
                 </div>
 
                 <div class="row">
-                <div class="col-md-4 pl-1">
+                  <div class="col-md-4">
                     <div class="form-group">
                       <label>Hot Products </label>
                       <select
@@ -422,7 +424,6 @@ export default function TaskFrom(props) {
                       </textarea>
                     </div>
                   </div>
-           
                 </div>
                 <div class="row">
                   <div class="update ml-auto mr-auto">

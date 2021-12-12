@@ -1,50 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { API_URL } from "../../constants/config";
+import { API_URL } from "../../../../constants/config";
 import axios from "axios";
-import "./cateproduct.css";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
-// import "./style.css";
-const onclick = (
-  e,
-  id,
-  name,
-  metaTitle,
-  description,
-  image,
-  price,
-  promotionPrice,
-  categoryId,
-  quantity,
-  detail,
-  metaKeywords,
-  metaDescriptions,
-  status,
-  viewCount,
-  link,
-  imageFile,
-  imageSrc
-) => {
-  axios.put(`${API_URL}/Products/body/${id}`, {
-    id,
-    name,
-    metaTitle,
-    description,
-    image,
-    price,
-    promotionPrice,
-    categoryId,
-    quantity,
-    detail,
-    metaKeywords,
-    metaDescriptions,
-    status,
-    viewCount: viewCount + 1,
-    link,
-    imageFile,
-    imageSrc,
-  });
-};
+
 const renderData = (data) => {
   return (
     <div className="home-product">
@@ -129,11 +88,11 @@ const renderData = (data) => {
   );
 };
 
-function Cateproduct(props) {
+export default function NapThe(props) {
   const [data, setData] = useState([]);
 
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(12);
+  const [itemsPerPage, setitemsPerPage] = useState(18);
 
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
@@ -186,14 +145,14 @@ function Cateproduct(props) {
     refreshEmployeeList_pro();
   }, []);
 
-  // const employeeAPI = (
-  //   url = `${API_URL}/Products/GetProducts_categoryId?categoryId=${values}`
-  // ) => {
-  //   return {
-  //     fetchAll: () => axios.get(url),
-  //     update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
-  //   };
-  // };
+  const employeeAPI = (
+    url = `${API_URL}/Products/GetProducts_categoryId?categoryId=${values}`
+  ) => {
+    return {
+      fetchAll: () => axios.get(url),
+      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+    };
+  };
 
   const employeeAPI_pro = (url = `${API_URL}/Products/`) => {
     return {
@@ -203,25 +162,25 @@ function Cateproduct(props) {
   };
 
   function refreshEmployeeList_pro() {
-    // if (values == 0) {
-    employeeAPI_pro()
-      .fetchAll()
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => console.log(err));
-    // } else {
-    //   employeeAPI()
-    //     .fetchAll()
-    //     .then((res) => {
-    //       setData(res.data);
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
+    if (values == 0) {
+      employeeAPI_pro()
+        .fetchAll()
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      employeeAPI()
+        .fetchAll()
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   const getInitialState = () => {
-    const value = "01";
+    const value = 1;
     return value;
   };
 
@@ -260,63 +219,74 @@ function Cateproduct(props) {
     pageDecrementBtn = <li onClick={handlePrevbtn}> &hellip; </li>;
   }
 
-  const handleLoadMore = () => {
-    setitemsPerPage(itemsPerPage + 5);
-  };
-
   return (
-    <>
-      {/* <h1>Todo List</h1> <br /> */}
-      <div className="app_container">
-        <div className="grid">
-          <div className="grid__row">
-            <div className="grid__column-12">
-              <div className="home-filter">
-                <span className="home-filler_label"> Sắp xếp theo</span>
+    <div>
+      <>
+        {/* <h1>Todo List</h1> <br /> */}
+        <div className="app_container">
+          <div className="grid">
+            <div className="grid__row">
+              <div className="grid__column-12">
+                <div className="home-filter">
+                  <span className="home-filler_label"> Sắp xếp theo</span>
 
-                <button class="home-filler_btn btn-cate btn-primary ">
-                  Phổ Biến
-                </button>
-                <button class="home-filler_btn btn-cate ">Mới Nhất</button>
-                <button class="home-filler_btn btn-cate ">Bán Chạy</button>
+                  <button class="home-filler_btn btn-cate btn-primary ">
+                    Phổ Biến
+                  </button>
+                  <button class="home-filler_btn btn-cate ">Mới Nhất</button>
+                  <button class="home-filler_btn btn-cate ">Bán Chạy</button>
+                  <select
+                    type="text"
+                    class="select-input"
+                    name="categoryId"
+                    value={values}
+                    onChange={handleChange}
+                  >
+                    <option value={0} selected>
+                      0 . All
+                    </option>
+                    <option value={1}>1. Thiết Bị Điển Tử</option>
+                    <option value={2}>2. Quần Áo </option>
+                    <option value={3}>3. Food</option>
+                    <option value={4}>4. Nội Thất</option>
+                    <option value={5}>5. Cosmetic</option>
+                  </select>
+                  <div className="home-filter__page">
+                    <span className="home-filler__page-num">
+                      <span className=" ">{currentPage}</span>
+                    </span>
+                  </div>
+                  <div className="home-filler__page-control">
+                    <button
+                      onClick={handlePrevbtn}
+                      disabled={currentPage == pages[0] ? true : false}
+                      className="home-filler__page-btn home-filler__page-btn-disable"
+                    >
+                      <i className="home-filler__page-icon">
+                        <BiChevronLeft />
+                      </i>
+                    </button>
+                    {renderPageNumbers}
+                    <button
+                      className="home-filler__page-btn"
+                      onClick={handleNextbtn}
+                      disabled={
+                        currentPage == pages[pages.length - 1] ? true : false
+                      }
+                    >
+                      <i className="home-filler__page-icon">
+                        <BiChevronRight />
+                      </i>
+                    </button>
+                  </div>
+                </div>
 
-                <div className="home-filter__page">
-                  <span className="home-filler__page-num">
-                    <span className=" ">{currentPage}</span>
-                  </span>
-                </div>
-                <div className="home-filler__page-control">
-                  <button
-                    onClick={handlePrevbtn}
-                    disabled={currentPage == pages[0] ? true : false}
-                    className="home-filler__page-btn home-filler__page-btn-disable"
-                  >
-                    <i className="home-filler__page-icon">
-                      <BiChevronLeft />
-                    </i>
-                  </button>
-                  {renderPageNumbers}
-                  <button
-                    className="home-filler__page-btn"
-                    onClick={handleNextbtn}
-                    disabled={
-                      currentPage == pages[pages.length - 1] ? true : false
-                    }
-                  >
-                    <i className="home-filler__page-icon">
-                      <BiChevronRight />
-                    </i>
-                  </button>
-                </div>
+                {renderData(currentItems)}
               </div>
-
-              {renderData(currentItems)}
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    </div>
   );
 }
-
-export default Cateproduct;

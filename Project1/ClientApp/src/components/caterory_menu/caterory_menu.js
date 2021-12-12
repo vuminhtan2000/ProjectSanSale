@@ -4,11 +4,6 @@ import Slider from "react-slick";
 import "../caterory_menu/caregory_menu.css";
 import { API_URL } from "../../constants/config";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import CategoryList from "../CategoryList/CategoryList";
-import Baiviethome from "../../pages/Baivietpage/Baiviet";
-import Layout_chung from "../caterory_menu/showsanpham/Layout_chung";
-import Dientu from "../caterory_menu/showsanpham/dientu/dientu";
-import Food from "../caterory_menu/showsanpham/food/food";
 
 const categroty = [
   "./img/iconcomputer.PNG",
@@ -25,11 +20,13 @@ const categroty = [
 const menus = [
   {
     name: "Thiết bị Điện Tử",
+    to: "/layout_chung/thietbidientu",
     exact: true,
     img: categroty[0],
   },
   {
     name: "Food",
+    to: "/layout_chung/food",
     exact: true,
     img: categroty[1],
   },
@@ -46,8 +43,8 @@ const menus = [
     img: categroty[3],
   },
   {
-    name: "Domestic",
-    to: "/layout_chung/domestic",
+    name: "Cosmetic",
+    to: "/layout_chung/cosmetic",
     exact: true,
     img: categroty[4],
   },
@@ -162,7 +159,7 @@ export default class category_menu extends Component {
           {/* <div className="menu-item"> {this.showMenus(menus)} </div> */}
 
           <Slider ref={(c) => (this.slider = c)} {...settings}>
-            <a href="http://sansale.somee.com/layout_chung/thietbidientu">
+            <a href="http://localhost:3000/layout_chung/thietbidientu">
               <div className="cardimg" key={1}>
                 <div className="img-icon">
                   <img src={categroty[0]} alt="iconcomputer" />
@@ -172,7 +169,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/food">
+            <a href="http://localhost:3000/layout_chung/food">
               <div className="cardimg" key={2}>
                 <div className="img-icon">
                   <img src={categroty[1]} alt="iconcomputer" />
@@ -182,7 +179,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/quanao">
+            <a href="http://localhost:3000/layout_chung/quanao">
               <div className="cardimg" key={3}>
                 <div className="img-icon">
                   <img src={categroty[2]} alt="iconcomputer" />
@@ -192,7 +189,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/giaydep">
+            <a href="http://localhost:3000/layout_chung/giaydep">
               <div className="cardimg" key={4}>
                 <div className="img-icon">
                   <img src={categroty[3]} alt="iconcomputer" />
@@ -202,7 +199,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/cosmectic">
+            <a href="http://localhost:3000/layout_chung/cosmetic">
               <div className="cardimg" key={5}>
                 <div className="img-icon">
                   <img src={categroty[4]} alt="iconcomputer" />
@@ -212,7 +209,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/dongho">
+            <a href="http://localhost:3000/layout_chung/dongho">
               <div className="cardimg" key={6}>
                 <div className="img-icon">
                   <img src={categroty[5]} alt="iconcomputer" />
@@ -222,7 +219,7 @@ export default class category_menu extends Component {
                 </div>
               </div>
             </a>
-            <a href="http://sansale.somee.com/layout_chung/napthe">
+            <a href="http://localhost:3000/layout_chung/napthe">
               <div className="cardimg" key={7}>
                 <div className="img-icon">
                   <img src={categroty[6]} alt="iconcomputer" />
