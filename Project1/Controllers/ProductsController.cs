@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using Project1.Models;
 using Microsoft.AspNetCore.Hosting;
+using ServiceStack.Script;
 
 namespace Project1.Controllers
 {
@@ -172,10 +173,10 @@ namespace Project1.Controllers
 
         }
         [HttpGet("GetProducts_day")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_day(DateTime startDate, DateTime endDate, bool hotProduct)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts_day( int month)
         {
 
-            return await _context.Products
+            return  _context.Products
                 .Select(x => new Product()
                 {
                     Id = x.Id,
@@ -204,10 +205,9 @@ namespace Project1.Controllers
                     Link = x.Link,
                     ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, x.Image)
                 })
-                .Where(pro => pro.CreatedDate >= startDate 
-                           && pro.CreatedDate <= endDate
-                           && pro.HotProduct == hotProduct)
-                .ToListAsync();
+                .Where(c => c.CreatedDate.Value.Month == month)
+                .ToList();
+           
 
         }
 
