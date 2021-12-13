@@ -68,10 +68,26 @@ export default function Productlist() {
       viewCount ,
       link ,
       imageSrc ,
+    }).then((res) => {
+      refreshEmployeeList();
+      if(hotProduct==true){
+        window.confirm("Sản phẩm đã được lên trang chủ ");
+
+      }
+      else{
+      window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
+
+      }
     })
+    
 
   }
   ;
+  const handleAllChecked = (event) => {
+    let hotProduct = employeeList.hotProduct;
+    hotProduct.forEach(hotProduct => (hotProduct.isChecked = event.target.checked));
+   
+  };
   const employeeAPI = (url = `${API_URL}/Products/`) => {
     return {
       fetchAll: () => axios.get(url),
@@ -142,7 +158,12 @@ export default function Productlist() {
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                  <th>Chọn</th>
+                  <th>Chọn        <input
+          type="checkbox"
+          onClick={handleAllChecked}
+          value="checkedall"
+        />{" "}
+        Check / Uncheck All</th>
                   <th>Id</th>
                   <th>Tên</th>
                   <th>Giá Gốc</th>
@@ -218,6 +239,7 @@ export default function Productlist() {
                                 item.link ,
                                 item.imageSrc 
                               )
+                              
                             
                              
                             }
