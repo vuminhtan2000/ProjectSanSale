@@ -1,11 +1,50 @@
 import React, { Component, useReducer } from "react";
 // import { Line } from "react-chartjs-2";
+import { API_URL } from "../../constants/config";
 import Chart from "react-apexcharts";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import "./index.css";
 
 class DashDefault extends React.Component {
   componentDidMount() {
+    for (let i = 1; i <= 12; i++) {
+      fetch(`${API_URL}/Products/GetProducts_day?month=${i}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            asd: data
+              .map((item) => item.viewCount)
+              .reduce((a, b) => (a = a + b), 0),
+            //   series2: [
+            //     {
+            //       ...this.state.series2,
+            //       data: [
+            //         data
+            //           .map((item) => item.viewCount)
+            //           .reduce((a, b) => (a = a + b), 0),
+            //       ],
+            //     },
+            //   ],
+          });
+          console.log(i + " - " + this.state.asd);
+          // console.log();
+          // console.log(
+          //   this.state.series2.map((item) => {
+          //     return [item.data.reduce((a, b) => (a = a + b), 0)];
+          //   })
+          // );
+        });
+    }
+    this.setState({
+      series2: [
+        {
+          ...this.state.series2,
+          data: [],
+        },
+      ],
+    });
+    // console.log(i + " - " + this.state.asd);
+
     fetch("http://www.sansale.somee.com/api/Products")
       .then((response) => response.json())
       .then((data) => {
@@ -28,30 +67,26 @@ class DashDefault extends React.Component {
           asdasd: data
             .map((item) => item.viewCount)
             .reduce((a, b) => (a = a + b), 0),
-          series2: [
-            {
-              ...this.state.series2,
-              data: data.map(
-                (item) => [item.viewCount].reduce((a, b) => (a = a + b), 0)
-                // [[item.viewCount].reduce((a, b) => (a = a + b), 0),]
-              ),
-            },
-          ],
+          // series2: [
+          //   {
+          //     ...this.state.series2,
+          //     data: [
+          //       data
+          //         .map((item) => item.viewCount)
+          //         .reduce((a, b) => (a = a + b), 0),
+          //     ],
+          //   },
+          // ],
         });
-        console.log(this.state.asdasd);
-        console.log(this.state.series2);
-
-        console.log(
-          this.state.series2.map((item) => {
-            return [item.data.reduce((a, b) => (a = a + b), 0)];
-          })
-        );
       });
   }
   MyComponent() {}
   constructor(props) {
     super(props);
+
     this.state = {
+      asd: [],
+      values: [1, 2, 3],
       asdasd: [],
       // Chart 1
       series1: [],
@@ -74,6 +109,7 @@ class DashDefault extends React.Component {
         },
       },
       // Chart 2
+
       series2: [
         {
           name: "Tổng",
@@ -174,6 +210,7 @@ class DashDefault extends React.Component {
                 return [item.data.reduce((a, b) => (a = a + b))];
               })}
             </div> */}
+            {console.log(this.state.series2)}
           </div>
         </div>
       </div>
