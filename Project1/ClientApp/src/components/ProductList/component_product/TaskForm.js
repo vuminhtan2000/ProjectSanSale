@@ -357,7 +357,7 @@ export default function TaskFrom(props) {
                         class="form-control"
                         placeholder="meta"
                         name="createdDate"
-                        value={values.createdDate}
+                        value={values.createdDate.split("T")[0]}
                         onChange={handleInputChange}
                       />
                     </div>
