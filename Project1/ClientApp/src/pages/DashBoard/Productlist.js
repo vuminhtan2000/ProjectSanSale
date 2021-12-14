@@ -41,7 +41,8 @@ export default function Productlist() {
     viewCount ,
     link ,
     imageSrc 
-  )=> {
+  ) => {
+    
     axios.put(`${API_URL}/Products/body/${id}`, {
       id ,
       name ,
@@ -53,6 +54,7 @@ export default function Productlist() {
       price,
       promotionPrice ,
       hotProduct: hotProduct=false?(hotProduct==true):(hotProduct ==false) ,
+      //
       quantity ,
       categoryId ,
       detail,
@@ -70,24 +72,20 @@ export default function Productlist() {
       imageSrc ,
     }).then((res) => {
       refreshEmployeeList();
-      if(hotProduct==true){
-        window.confirm("Sản phẩm đã được lên trang chủ ");
+      // if(hotProduct==true){
+      //   window.confirm("Sản phẩm đã được lên trang chủ ");
 
-      }
-      else{
-      window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
+      // }
+      // else{
+      // window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
 
-      }
+      // }
     })
     
 
   }
   ;
-  const handleAllChecked = (event) => {
-    let hotProduct = employeeList.hotProduct;
-    hotProduct.forEach(hotProduct => (hotProduct.isChecked = event.target.checked));
-   
-  };
+
   const employeeAPI = (url = `${API_URL}/Products/`) => {
     return {
       fetchAll: () => axios.get(url),
@@ -147,22 +145,139 @@ export default function Productlist() {
         .then((res) => refreshEmployeeList())
         .catch((err) => console.log(err));
   };
+  const deleteCustomerByIds = (    id ,
+    name ,
+    code,
+    metaTitle ,
+    description,
+    image ,
+    moreImages ,
+    price,
+    promotionPrice ,
+    hotProduct ,
+    quantity ,
+    categoryId ,
+    detail,
+    warranty ,
+    createdDate,
+    createdBy ,
+    modifiedDate ,
+    modifiedBy ,
+    metaKeywords ,
+    metaDescriptions,
+    status ,
+    topHot  ,
+    viewCount ,
+    link ,
+    imageSrc ) => {
+    let arrayids = [];
+    {employeeList.forEach(d => {
+      if (d.hotProduct) {
+        arrayids.push(d.id);
+      }
+    })};
+    console.log("abc "+ arrayids);
+    axios.put(`${API_URL}/Products/body/${arrayids}`, {
+      id ,
+      name ,
+      code,
+      metaTitle ,
+      description,
+      image ,
+      moreImages ,
+      price,
+      promotionPrice ,
+      hotProduct ,
+      // hotProduct=false?(hotProduct==true):(hotProduct ==false)
+      quantity ,
+      categoryId ,
+      detail,
+      warranty ,
+      createdDate,
+      createdBy ,
+      modifiedDate ,
+      modifiedBy ,
+      metaKeywords ,
+      metaDescriptions,
+      status ,
+      topHot  ,
+      viewCount ,
+      link ,
+      imageSrc ,
+    }).then((res) => {
+      refreshEmployeeList();
+      // if(hotProduct==true){
+      //   window.confirm("Sản phẩm đã được lên trang chủ ");
+
+      // }
+      // else{
+      // window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
+
+      // }
+    })
+    
+  };
   return (
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <h4 class="card-title"> Product </h4>
+            <button
+        className="btn btn-danger btn-sm m-2"
+        onClick={() => {
+          deleteCustomerByIds();
+        }}
+      />
+          
+        
+      
           </div>
           <div class="card-body">
+            
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
                   <th>Chọn        <input
-          type="checkbox"
-          onClick={handleAllChecked}
-          value="checkedall"
-        />{" "}
+                type="checkbox"
+                onChange={e => {
+                  let value = e.target.checked;
+                  setEmployeeList(
+                    employeeList.map(item => {
+                      item.hotProduct = value;
+                      onclick(
+                        e,
+                        parseInt(item.id),
+                        item.name ,
+                        item.code,
+                        item.metaTitle ,
+                        item.description,
+                        item.image ,
+                        item.moreImages ,
+                        item.price,
+                        item.promotionPrice ,
+                        item.hotProduct ,
+                        item.quantity ,
+                        item.categoryId ,
+                        item.detail,
+                        item.warranty ,
+                        item.createdDate,
+                        item.createdBy ,
+                        item.modifiedDate ,
+                        item.modifiedBy ,
+                        item.metaKeywords ,
+                        item.metaDescriptions,
+                        item.status ,
+                        item.topHot  ,
+                        item.viewCount ,
+                        item.link ,
+                        item.imageSrc 
+                      )
+                      return item;
+                    })
+                  );
+                }}
+              />
         Check / Uncheck All</th>
                   <th>Id</th>
                   <th>Tên</th>
@@ -205,7 +320,57 @@ export default function Productlist() {
                     .map((item, i) => {
                       return (
                         <tr key={i}>
-                          <td><input
+                          <td>
+                          <input
+                              type="checkbox"
+                              checked={item.hotProduct}
+                              // onChange={e => {
+                              //   let value = e.target.checked;
+                              //   setEmployeeList(
+                              //     employeeList.map(sd => {
+                              //       if (sd.id === item.id) {
+                              //         sd.hotProduct = value;
+                              //       }
+                              //       console.log(value);
+                              //       return sd;
+                              //     })
+                              //   );
+                              // }}
+                              onChange={(e) =>
+                                onclick(
+                                  e,
+                                  parseInt(item.id),
+                                  item.name ,
+                                  item.code,
+                                  item.metaTitle ,
+                                  item.description,
+                                  item.image ,
+                                  item.moreImages ,
+                                  item.price,
+                                  item.promotionPrice ,
+                                  item.hotProduct ,
+                                  item.quantity ,
+                                  item.categoryId ,
+                                  item.detail,
+                                  item.warranty ,
+                                  item.createdDate,
+                                  item.createdBy ,
+                                  item.modifiedDate ,
+                                  item.modifiedBy ,
+                                  item.metaKeywords ,
+                                  item.metaDescriptions,
+                                  item.status ,
+                                  item.topHot  ,
+                                  item.viewCount ,
+                                  item.link ,
+                                  item.imageSrc 
+                                )
+                                
+                              
+                               
+                              }
+                            />
+                              {/* <input
                             type="checkbox"
                             id={item.id}
                             checked={item.hotProduct}
@@ -245,7 +410,8 @@ export default function Productlist() {
                             }
                             
                          
-                            /></td>
+                            /> */}
+                            </td>
                           <td>{item.id}</td>
                           <td>{item.name}</td>
                           <td>{item.promotionPrice}</td>
