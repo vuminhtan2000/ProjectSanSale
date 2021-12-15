@@ -7,14 +7,38 @@ import "./index.css";
 
 class DashDefault extends React.Component {
   componentDidMount() {
-    for (let i = 1; i <= 12; i++) {
+
+    for (let i=1; i <= 12;i++ ){
+     
       fetch(`${API_URL}/Products/GetProducts_day?month=${i}`)
+   
         .then((response) => response.json())
         .then((data) => {
+            if(this.state.i[0]==0){
+              return;
+            }else{
           this.setState({
-            asd: data
-              .map((item) => item.viewCount)
-              .reduce((a, b) => (a = a + b), 0),
+            abc: data
+            .map((item) => item.viewCount)
+            
+            .reduce((a, b) => (a = a + b), 0)
+          });
+          const viewcoutadd =this.state.asd; 
+          viewcoutadd.push(this.state.abc)
+          console.log(i +"-" +this.state.abc)
+      
+   
+          this.setState({
+            series2: [
+              {
+                ...this.state.series2,
+                data:[].concat(viewcoutadd),
+             
+              },
+            ],
+           
+          });
+        }
             //   series2: [
             //     {
             //       ...this.state.series2,
@@ -26,23 +50,18 @@ class DashDefault extends React.Component {
             //     },
             //   ],
           });
-          console.log(i + " - " + this.state.asd);
+     
+       
           // console.log();
           // console.log(
           //   this.state.series2.map((item) => {
           //     return [item.data.reduce((a, b) => (a = a + b), 0)];
           //   })
           // );
-        });
-    }
-    this.setState({
-      series2: [
-        {
-          ...this.state.series2,
-          data: [],
-        },
-      ],
-    });
+        };
+        
+
+ 
     // console.log(i + " - " + this.state.asd);
 
     fetch("http://www.sansale.somee.com/api/Products")
@@ -85,7 +104,10 @@ class DashDefault extends React.Component {
     super(props);
 
     this.state = {
-      asd: [],
+      i :[1,2,3,4,5,6,7,8,9,10,11,12],
+      abc : 0,
+      asd :[],
+
       values: [1, 2, 3],
       asdasd: [],
       // Chart 1
@@ -133,18 +155,7 @@ class DashDefault extends React.Component {
           text: "Tổng click mỗi tháng",
         },
         labels: [
-          "tháng 1",
-          "tháng 2",
-          "tháng 3",
-          "tháng 4",
-          "tháng 5",
-          "tháng 6",
-          "tháng 7",
-          "tháng 8",
-          "tháng 9",
-          "tháng 10",
-          "tháng 11",
-          "tháng 12",
+          ...this.state.abc
         ],
       },
     };
