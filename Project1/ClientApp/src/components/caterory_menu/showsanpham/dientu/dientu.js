@@ -161,16 +161,16 @@ export default function DienTu(props) {
     };
   };
 
-  function refreshEmployeeList_pro() {
+  async function refreshEmployeeList_pro() {
     if (values == 0) {
-      employeeAPI_pro()
+      await employeeAPI_pro()
         .fetchAll()
         .then((res) => {
           setData(res.data);
         })
         .catch((err) => console.log(err));
     } else {
-      employeeAPI()
+      await employeeAPI()
         .fetchAll()
         .then((res) => {
           setData(res.data);
