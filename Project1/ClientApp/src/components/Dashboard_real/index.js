@@ -6,63 +6,33 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import "./index.css";
 
 class DashDefault extends React.Component {
-  componentDidMount() {
-
-    for (let i=1; i <= 12;i++ ){
-     
-      fetch(`${API_URL}/Products/GetProducts_day?month=${i}`)
-   
+  async componentDidMount() {
+    for (let i = 1; i < 13; i++) {
+      console.log(i);
+    }
+    for (let i = 1; i <= 12; i++) {
+      await fetch(`${API_URL}/Products/GetProducts_day?month=${i}`)
         .then((response) => response.json())
         .then((data) => {
-            if(this.state.i[0]==0){
-              return;
-            }else{
           this.setState({
             abc: data
-            .map((item) => item.viewCount)
-            
-            .reduce((a, b) => (a = a + b), 0)
+              .map((item) => item.viewCount)
+              .reduce((a, b) => (a = a + b)),
           });
-          const viewcoutadd =this.state.asd; 
-          viewcoutadd.push(this.state.abc)
-          console.log(i +"-" +this.state.abc)
-      
-   
+          const viewcoutadd = this.state.asd;
+          viewcoutadd.push(this.state.abc);
+
           this.setState({
             series2: [
               {
                 ...this.state.series2,
-                data:[].concat(viewcoutadd),
-             
+                data: [].concat(viewcoutadd),
               },
             ],
-           
           });
-        }
-            //   series2: [
-            //     {
-            //       ...this.state.series2,
-            //       data: [
-            //         data
-            //           .map((item) => item.viewCount)
-            //           .reduce((a, b) => (a = a + b), 0),
-            //       ],
-            //     },
-            //   ],
-          });
-     
-       
-          // console.log();
-          // console.log(
-          //   this.state.series2.map((item) => {
-          //     return [item.data.reduce((a, b) => (a = a + b), 0)];
-          //   })
-          // );
-        };
-        
-
- 
-    // console.log(i + " - " + this.state.asd);
+          console.log(i + "-" + this.state.abc);
+        });
+    }
 
     fetch("http://www.sansale.somee.com/api/Products")
       .then((response) => response.json())
@@ -86,16 +56,6 @@ class DashDefault extends React.Component {
           asdasd: data
             .map((item) => item.viewCount)
             .reduce((a, b) => (a = a + b), 0),
-          // series2: [
-          //   {
-          //     ...this.state.series2,
-          //     data: [
-          //       data
-          //         .map((item) => item.viewCount)
-          //         .reduce((a, b) => (a = a + b), 0),
-          //     ],
-          //   },
-          // ],
         });
       });
   }
@@ -104,9 +64,9 @@ class DashDefault extends React.Component {
     super(props);
 
     this.state = {
-      i :[1,2,3,4,5,6,7,8,9,10,11,12],
-      abc : 0,
-      asd :[],
+      i: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      abc: [],
+      asd: [],
 
       values: [1, 2, 3],
       asdasd: [],
@@ -155,7 +115,18 @@ class DashDefault extends React.Component {
           text: "Tổng click mỗi tháng",
         },
         labels: [
-          ...this.state.abc
+          "tháng 1",
+          "tháng 2",
+          "tháng 3",
+          "tháng 4",
+          "tháng 5",
+          "tháng 6",
+          "tháng 7",
+          "tháng 8",
+          "tháng 9",
+          "tháng 10",
+          "tháng 11",
+          "tháng 12",
         ],
       },
     };
@@ -216,12 +187,6 @@ class DashDefault extends React.Component {
               width={650}
               height={400}
             />
-            {/* <div>
-              {this.state.series2.map((item) => {
-                return [item.data.reduce((a, b) => (a = a + b))];
-              })}
-            </div> */}
-            {console.log(this.state.series2)}
           </div>
         </div>
       </div>
