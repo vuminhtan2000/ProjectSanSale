@@ -162,7 +162,7 @@ export default function TaskFrom(props) {
             <div class="card-footer">
               <div class="button-container">
                 <div class="row">
-                  <div class="col-lg-5 col-md-6 col-6 ml-auto mr-auto">
+                  <div class="col-lg-6 col-md-6 col-6 ml-auto mr-auto">
                     <h5>
                       <del>{values.promotionPrice}VND</del>
                     </h5>
