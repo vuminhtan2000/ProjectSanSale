@@ -9,11 +9,11 @@ const renderData = (data) => {
     <div className="home-product">
       {/* grid ->row -Column */}
       <div className="grid_row">
-        {data.map((item) => {
+        {data.map((item, key) => {
           return (
-            <div className="gird__column-2">
+            <div className="gird__column-2" key={key}>
               {/* product item */}
-              <a
+              <div
                 className="home-product-item"
                 href={item.link}
                 onClick={(e) =>
@@ -79,7 +79,7 @@ const renderData = (data) => {
                   </span>
                   <span className="home-product-item__saleoff-label">GIẢM</span>
                 </div>
-              </a>
+              </div>
             </div>
           );
         })}
@@ -92,7 +92,7 @@ export default function DienTu(props) {
   const [data, setData] = useState([]);
 
   const [currentPage, setcurrentPage] = useState(1);
-  const [itemsPerPage, setitemsPerPage] = useState(18);
+  const [itemsPerPage, setitemsPerPage] = useState(12);
 
   const [pageNumberLimit, setpageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(5);
@@ -150,14 +150,12 @@ export default function DienTu(props) {
   ) => {
     return {
       fetchAll: () => axios.get(url),
-      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
     };
   };
 
   const employeeAPI_pro = (url = `${API_URL}/Products/`) => {
     return {
       fetchAll: () => axios.get(url),
-      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
     };
   };
 
@@ -169,7 +167,7 @@ export default function DienTu(props) {
           setData(res.data);
         })
         .catch((err) => console.log(err));
-    } else {
+    } else if (values != 0) {
       await employeeAPI()
         .fetchAll()
         .then((res) => {
@@ -184,12 +182,12 @@ export default function DienTu(props) {
     return value;
   };
 
-  const [values, setValues] = useState(getInitialState);
-
+  const [values, setValues] = useState(1);
+  console.log(values);
+  console.log(data);
   const handleChange = (e) => {
-    setValues(e.target.value);
+    // setValues(e.target.value);
     refreshEmployeeList_pro();
-    console.log(values);
   };
   const handleNextbtn = () => {
     setcurrentPage(currentPage + 1);
@@ -238,9 +236,11 @@ export default function DienTu(props) {
                   <select
                     type="text"
                     class="select-input"
-                    name="categoryId"
+                    // name="categoryId"
+                    onChange={(e) => {
+                      setValues(e.target.value);
+                    }}
                     value={values}
-                    onChange={handleChange}
                   >
                     <option value={0}>0 . All</option>
                     <option value={1}>1. Thiết Bị Điển Tử</option>
@@ -249,6 +249,9 @@ export default function DienTu(props) {
                     <option value={4}>4. Giày dép</option>
                     <option value={5}>5. Cosmestic</option>
                   </select>
+                  <button className="" onClick={refreshEmployeeList_pro}>
+                    Export Chart
+                  </button>
                   <div className="home-filter__page">
                     <span className="home-filler__page-num">
                       <span className=" ">{currentPage}</span>

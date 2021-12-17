@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sort from "./Sort";
 import Search from "./Search";
+import SortMonth from "./SortMonth";
 
 function Control(props) {
   return (
@@ -13,6 +14,10 @@ function Control(props) {
         employeeList={props.employeeList}
         setNumber={props.setNumber}
         setTrueFalse={props.setTrueFalse}
+      />
+      <SortMonth
+        setValuesMonth={props.setValuesMonth}
+        refreshEmployeeList={props.refreshEmployeeList}
       />
     </div>
   );

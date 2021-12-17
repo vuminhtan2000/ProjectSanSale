@@ -14,8 +14,11 @@ function Sort(props) {
   const _false = () => {
     props.setTrueFalse(false);
   };
+  const _default = () => {
+    props.setTrueFalse(null);
+  };
   return (
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 sort_button">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 sort_button">
       <div class="dropdown">
         <button
           class="btn btn-primary dropdown-toggle"
@@ -27,8 +30,13 @@ function Sort(props) {
         >
           Sắp Xếp <span class="fa fa-caret-square-o-down ml-5"></span>
         </button>
-
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li>
+            <a role="button" onClick={_default}>
+              All
+            </a>
+          </li>
+          <li role="separator" class="divider"></li>
           <li>
             <a role="button" onClick={number_1}>
               <span class="fa fa-sort-alpha-asc pr-5"> Tên A-Z</span>
@@ -51,8 +59,8 @@ function Sort(props) {
             </a>
           </li>
         </ul>
-        {console.log(_true)}
       </div>
+      {console.log()}
     </div>
   );
 }

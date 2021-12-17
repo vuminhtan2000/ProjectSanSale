@@ -27,17 +27,7 @@ export default function TaskList(props) {
                 </thead>
                 <tbody>
                   {props.employeeList
-                    .sort((a, b) => {
-                      if (props.number == 1) {
-                        return a.name.toLowerCase() > b.name.toLowerCase()
-                          ? 1
-                          : -1;
-                      } else if (props.number == -1) {
-                        return a.name.toLowerCase() < b.name.toLowerCase()
-                          ? 1
-                          : -1;
-                      }
-                    })
+
                     .filter((val) => {
                       if (props.search == "") {
                         return val;
@@ -47,10 +37,26 @@ export default function TaskList(props) {
                           .includes(props.search.toLowerCase())
                       ) {
                         return val;
-                      } else if (props.truefalse == true) {
+                      }
+                    })
+                    .filter((val) => {
+                      if (props.truefalse == null) {
                         return val;
-                      } else if (props.truefalse == false) {
+                      } else if (val.status == props.truefalse) {
                         return val;
+                      } else if (val.status == props.truefalse) {
+                        return val;
+                      }
+                    })
+                    .sort((a, b) => {
+                      if (props.number == 1) {
+                        return a.name.toLowerCase() > b.name.toLowerCase()
+                          ? 1
+                          : -1;
+                      } else if (props.number == -1) {
+                        return a.name.toLowerCase() < b.name.toLowerCase()
+                          ? 1
+                          : -1;
                       }
                     })
                     .map((item, i) => {
