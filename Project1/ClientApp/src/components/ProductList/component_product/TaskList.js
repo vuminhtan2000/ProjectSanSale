@@ -1,7 +1,15 @@
-import React, { Component, useState } from "react";
+import { SchoolOutlined } from "@material-ui/icons";
+import React, { useState, useEffect } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 export default function TaskList(props) {
+  function topFunction() {
+    document.body.scrollTop = 50;
+    document.documentElement.scrollTop = 50;
+  }
+
+
+
   return (
     <div class="row">
       <div class="col-md-12">
@@ -9,10 +17,53 @@ export default function TaskList(props) {
           <div class="card-header">
             <h4 class="card-title"> Product </h4>
           </div>
-          <div class="card-body" style={{ textAlign: "center" }}>
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
+          <div class="card-body" style={{ textAlign: "center" }} id="table-wrapper">
+            <div class="table-responsive " id="table-scroll">
+              <table class="table"  >
+                <thead >
+                <th>
+                <input
+                      type="checkbox"
+                      onChange={(e) => {
+                        let value = e.target.checked;
+                        props.setEmployeeList(
+                          props.employeeList.map((item) => {
+                            item.hotProduct = value;
+                            props.onclick(
+                              e,
+                              parseInt(item.id),
+                              item.name,
+                              item.code,
+                              item.metaTitle,
+                              item.description,
+                              item.image,
+                              item.moreImages,
+                              item.price,
+                              item.promotionPrice,
+                              item.hotProduct,
+                              item.quantity,
+                              item.categoryId,
+                              item.detail,
+                              item.warranty,
+                              item.createdDate,
+                              item.createdBy,
+                              item.modifiedDate,
+                              item.modifiedBy,
+                              item.metaKeywords,
+                              item.metaDescriptions,
+                              item.status,
+                              item.topHot,
+                              item.viewCount,
+                              item.link,
+                              item.imageSrc
+                            );
+                            return item;
+                          })
+                        );
+                      }}
+                    />
+                    All
+                  </th>
                   <th>Id</th>
                   <th width="350px" style={{ textAlign: "none" }}>
                     Tên
@@ -25,7 +76,7 @@ export default function TaskList(props) {
                   <th>Trạng Thái</th>
                   <th>Hành Động</th>
                 </thead>
-                <tbody>
+                <tbody >
                   {props.employeeList
 
                     .filter((val) => {
@@ -62,6 +113,42 @@ export default function TaskList(props) {
                     .map((item, i) => {
                       return (
                         <tr key={i}>
+                           <td>
+                            <input
+                              type="checkbox"
+                              checked={item.hotProduct}
+                              onChange={(e) =>
+                                props.onclick(
+                                  e,
+                                  parseInt(item.id),
+                                  item.name,
+                                  item.code,
+                                  item.metaTitle,
+                                  item.description,
+                                  item.image,
+                                  item.moreImages,
+                                  item.price,
+                                  item.promotionPrice,
+                                  item.hotProduct,
+                                  item.quantity,
+                                  item.categoryId,
+                                  item.detail,
+                                  item.warranty,
+                                  item.createdDate,
+                                  item.createdBy,
+                                  item.modifiedDate,
+                                  item.modifiedBy,
+                                  item.metaKeywords,
+                                  item.metaDescriptions,
+                                  item.status,
+                                  item.topHot,
+                                  item.viewCount,
+                                  item.link,
+                                  item.imageSrc
+                                )
+                              }
+                            />
+                            </td>
                           <td>{item.id}</td>
                           <td>{item.name}</td>
                           <td>{item.promotionPrice}</td>
@@ -95,6 +182,8 @@ export default function TaskList(props) {
                               onClick={() => {
                                 props.showRecordDetails(item);
                                 props.setIsVisible(true);
+                                topFunction() 
+                                
                               }}
                             >
                               <AiOutlineEdit />

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../constants/config";
+import { API_URLImages } from "../../constants/config";
+
 import axios from "axios";
 import "./cateproduct.css";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -9,42 +11,63 @@ const onclick = (
   e,
   id,
   name,
+  code,
   metaTitle,
   description,
   image,
+  moreImages,
   price,
-  promotionPrice, 
-  categoryId,
+  promotionPrice,
+  hotProduct,
   quantity,
-  detail,
+  categoryId,
+  detail ,
+  warranty,
+  createdDate,
+  createdBy,
+  modifiedDate,
+  modifiedBy,
   metaKeywords,
   metaDescriptions,
   status,
+  topHot,
   viewCount,
   link,
+  category,
   imageFile,
-  imageSrc
+  imageSrc,
 ) => {
   axios.put(`${API_URL}/Products/body/${id}`, {
     id,
     name,
+    code,
     metaTitle,
     description,
     image,
+    moreImages,
     price,
     promotionPrice,
-    categoryId,
+    hotProduct,
     quantity,
-    detail,
+    categoryId,
+    detail ,
+    warranty,
+    createdDate,
+    createdBy,
+    modifiedDate,
+    modifiedBy,
     metaKeywords,
     metaDescriptions,
     status,
-    viewCount: viewCount + 1,
+    topHot,
+    viewCount:viewCount +1,
     link,
+    category,
     imageFile,
     imageSrc,
-  });
+  })
 };
+
 const renderData = (data) => {
   return (
     <div className="home-product">
@@ -62,26 +85,36 @@ const renderData = (data) => {
                     e,
                     parseInt(item.id),
                     item.name,
+                    item.code,
                     item.metaTitle,
                     item.description,
                     item.image,
+                    item.moreImages,
                     item.price,
                     item.promotionPrice,
-                    item.categoryId,
+                    item.hotProduct,
                     item.quantity,
-                    item.detail,
+                    item.categoryId,
+                    item.detail ,
+                    item.warranty,
+                    item.createdDate,
+                    item.createdBy,
+                    item.modifiedDate,
+                    item.modifiedBy,
                     item.metaKeywords,
                     item.metaDescriptions,
                     item.status,
+                    item.topHot,
                     item.viewCount,
                     item.link,
+                    item.category,
                     item.imageFile,
-                    item.imageSrc
+                    item.imageSrc,
                   )
                 }
               >
                 <div className="home-product-item-img">
-                  <img src={item.imageSrc}></img>
+                  <img src={`${API_URLImages}/${item.image}`}></img>
                 </div>
                 <h4 className="home-product-item__name">{item.name} </h4>
                 <div className="home-product-item__price">
@@ -116,7 +149,8 @@ const renderData = (data) => {
                                  </div> */}
                 <div className="home-product-item__saleoff">
                   <span className="home-product-item__saleoff-percent">
-                    {item.detail}%
+                    {parseInt(100-((item.price*100)/item.promotionPrice))}%
+                 
                   </span>
                   <span className="home-product-item__saleoff-label">GIẢM</span>
                 </div>
@@ -129,8 +163,11 @@ const renderData = (data) => {
   );
 };
 
-function Cateproduct(props) {
+
+function Cateproduct() {
   const [data, setData] = useState([]);
+  const [cate, setcate] = useState([]);
+
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(12);
@@ -184,6 +221,8 @@ function Cateproduct(props) {
   });
   useEffect(() => {
     refreshEmployeeList_pro();
+    refreshEmployeeList_cate();
+    onclick();
   }, []);
 
   // const employeeAPI = (
@@ -194,7 +233,34 @@ function Cateproduct(props) {
   //     update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
   //   };
   // };
+  const onclick_id = (
+    e,
+    id ,
 
+  )=> {
+    if(id==0){
+      axios.get(`${API_URL}/Products/GetProducts_hotProduct?hotProduct=true`)
+      .then((res) => {
+        setData(res.data)
+        
+    
+      })
+    }
+    else{
+      axios.get(`${API_URL}/Categories/${id}`, {
+        id ,
+     
+      }).then((res) => {
+        setData(res.data.products)
+        
+    
+      })
+    }
+
+    
+  
+  }
+  ;
   const employeeAPI_pro = (url = `${API_URL}/Products/GetProducts_hotProduct?hotProduct=true`) => {
     return {
       fetchAll: () => axios.get(url),
@@ -218,20 +284,36 @@ function Cateproduct(props) {
     //     })
     //     .catch((err) => console.log(err));
     // }
+  };
+  const employeeAPI_cate = (url = `${API_URL}/Categories/`) => {
+    return {
+      fetchAll: () => axios.get(url),
+      update: (id, updatedRecord) => axios.put(url + id, updatedRecord),
+    };
+  };
+
+  function refreshEmployeeList_cate() {
+    // if (values == 0) {
+    employeeAPI_cate()
+      .fetchAll()
+      .then((res) => {
+        setcate(res.data);
+      })
+      .catch((err) => console.log(err));
+    // } else {
+    //   employeeAPI()
+    //     .fetchAll()
+    //     .then((res) => {
+    //       setData(res.data);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
   }
+  
+  
+ 
 
-  const getInitialState = () => {
-    const value = "01";
-    return value;
-  };
 
-  const [values, setValues] = useState(getInitialState);
-
-  const handleChange = (e) => {
-    setValues(e.target.value);
-    refreshEmployeeList_pro();
-    console.log(values);
-  };
   const handleNextbtn = () => {
     setcurrentPage(currentPage + 1);
 
@@ -274,12 +356,31 @@ function Cateproduct(props) {
               <div className="home-filter">
                 <span className="home-filler_label"> Sắp xếp theo</span>
 
-                <button class="home-filler_btn btn-cate btn-primary ">
-                  Phổ Biến
+                <button class="home-filler_btn btn-cate btn-primary " onClick={(e) =>
+                    onclick_id(
+                      e,
+                      parseInt(0),
+                     
+                    )
+                  } 
+                >
+                  Tất cả Sản phẩm 
                 </button>
-                <button class="home-filler_btn btn-cate ">Mới Nhất</button>
-                <button class="home-filler_btn btn-cate ">Bán Chạy</button>
-
+                {cate.map((item) => (
+                  
+                  <button class="home-filler_btn btn-cate" onClick={(e) =>
+                    onclick_id(
+                      e,
+                      parseInt(item.id),
+                     
+                    )
+                  } 
+                >{item.nameCategory}</button>
+                
+               )
+              )}
+               
+  
                 <div className="home-filter__page">
                   <span className="home-filler__page-num">
                     <span className=" ">{currentPage}</span>
@@ -309,8 +410,10 @@ function Cateproduct(props) {
                   </button>
                 </div>
               </div>
-
+              
+              
               {renderData(currentItems)}
+             
             </div>
           </div>
         </div>

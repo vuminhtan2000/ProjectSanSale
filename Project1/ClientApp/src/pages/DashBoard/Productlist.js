@@ -4,12 +4,8 @@ import axios from "axios";
 import { API_URL } from "../../constants/config";
 export default function Productlist() {
   const [employeeList, setEmployeeList] = useState([]);
-  const [recordForEdit, setRecordForEdit] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [search, setSearch] = useState("");
   const [number, setNumber] = useState(0);
-  const [url, setUrl] = useState();
-  const [rememberUser, setRememberUser] = useState(true);
   useEffect(() => {
     refreshEmployeeList();
   }, []);
@@ -74,14 +70,7 @@ export default function Productlist() {
       })
       .then((res) => {
         refreshEmployeeList();
-        // if(hotProduct==true){
-        //   window.confirm("Sản phẩm đã được lên trang chủ ");
 
-        // }
-        // else{
-        // window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
-
-        // }
       });
   };
   const employeeAPI = (url = `${API_URL}/Products/`) => {
@@ -103,45 +92,7 @@ export default function Productlist() {
       .catch((err) => console.log(err));
   }
 
-  const addOrEdit = (formData, onSuccess) => {
-    if (formData.get("id") == "0")
-      employeeAPI()
-        .create(formData)
-        .then((res) => {
-          onSuccess();
-          refreshEmployeeList();
-          window.confirm("Bạn đã Thêm thành công");
-        })
-        .catch((err) => {
-          console.log(err);
-          window.confirm("Bạn đã Thêm thất bại");
-        });
-    else
-      employeeAPI()
-        .update(formData.get("id"), formData)
-        .then((res) => {
-          onSuccess();
-          refreshEmployeeList();
-          window.confirm("Bạn đã update thành công");
-        })
-        .catch((err) => {
-          console.log(err);
-          window.confirm("Mời bạn nhập lại");
-        });
-  };
-
-  const showRecordDetails = (data) => {
-    setRecordForEdit(data);
-  };
-
-  const onDelete = (e, id) => {
-    e.stopPropagation();
-    if (window.confirm("Are you sure to delete this record?"))
-      employeeAPI()
-        .delete(id)
-        .then((res) => refreshEmployeeList())
-        .catch((err) => console.log(err));
-  };
+  
   const deleteCustomerByIds = (
     id,
     name,
@@ -190,7 +141,6 @@ export default function Productlist() {
         price,
         promotionPrice,
         hotProduct,
-        // hotProduct=false?(hotProduct==true):(hotProduct ==false)
         quantity,
         categoryId,
         detail,
@@ -209,14 +159,7 @@ export default function Productlist() {
       })
       .then((res) => {
         refreshEmployeeList();
-        // if(hotProduct==true){
-        //   window.confirm("Sản phẩm đã được lên trang chủ ");
-
-        // }
-        // else{
-        // window.confirm("Đã gỡ sản phẩm khỏi trang chủ  ");
-
-        // }
+       
       });
   };
   return (
@@ -322,18 +265,6 @@ export default function Productlist() {
                             <input
                               type="checkbox"
                               checked={item.hotProduct}
-                              // onChange={e => {
-                              //   let value = e.target.checked;
-                              //   setEmployeeList(
-                              //     employeeList.map(sd => {
-                              //       if (sd.id === item.id) {
-                              //         sd.hotProduct = value;
-                              //       }
-                              //       console.log(value);
-                              //       return sd;
-                              //     })
-                              //   );
-                              // }}
                               onChange={(e) =>
                                 onclick(
                                   e,

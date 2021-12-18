@@ -17,7 +17,7 @@ class DashDefault extends React.Component {
           this.setState({
             abc: data
               .map((item) => item.viewCount)
-              .reduce((a, b) => (a = a + b)),
+              .reduce((a, b) => (a = a + b),0),
           });
           const viewcoutadd = this.state.asd;
           viewcoutadd.push(this.state.abc);
@@ -39,8 +39,8 @@ class DashDefault extends React.Component {
       .then((data) => {
         this.setState({
           series1: data
+          .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
             .slice(0, 10)
-            .sort((a, b) => (a.viewCount > b.viewCount ? -1 : 1))
             .map((item) => {
               return item.viewCount;
             }),
