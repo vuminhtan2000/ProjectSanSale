@@ -47,9 +47,9 @@ function SortMonth(props) {
 
   return (
     <>
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 sort_button">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 sort_button">
         <div class="dropdown">
-          <div className="sortMonth">
+    
             <select
               type="text"
               class="select-input"
@@ -72,15 +72,18 @@ function SortMonth(props) {
               <option value={11}>11</option>
               <option value={12}>12</option>
             </select>
-          </div>
+            
+   
+     
           {/* {console.log(values)} */}
         </div>
-      </div>
-      <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-        <button className="" onClick={props.refreshEmployeeList}>
+        <div className="buttonxuat">
+        <button className="btn btn-primary buttonxuat" onClick={props.refreshEmployeeList}>
           Xuất
         </button>
+        </div>
       </div>
+
     </>
   );
 }

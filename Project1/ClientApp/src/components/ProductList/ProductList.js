@@ -19,6 +19,103 @@ export default function ProductList(props) {
   useEffect(() => {
     refreshEmployeeList();
   }, []);
+  const onclick = (
+    e,
+    id,
+    name,
+    code,
+    metaTitle,
+    description,
+    image,
+    moreImages,
+    price,
+    promotionPrice,
+    hotProduct,
+    quantity,
+    categoryId,
+    detail,
+    warranty,
+    createdDate,
+    createdBy,
+    modifiedDate,
+    modifiedBy,
+    metaKeywords,
+    metaDescriptions,
+    status,
+    topHot,
+    viewCount,
+    link,
+    imageSrc
+  ) => {
+    axios
+      .put(`${API_URL}/Products/body/${id}`, {
+        id,
+        name,
+        code,
+        metaTitle,
+        description,
+        image,
+        moreImages,
+        price,
+        promotionPrice,
+        hotProduct: (hotProduct = false
+          ? hotProduct == true
+          : hotProduct == false),
+        //
+        quantity,
+        categoryId,
+        detail,
+        warranty,
+        createdDate,
+        createdBy,
+        modifiedDate,
+        modifiedBy,
+        metaKeywords,
+        metaDescriptions,
+        status,
+        topHot,
+        viewCount,
+        link,
+        imageSrc,
+      })
+      .then((res) => {
+        refreshEmployeeList();
+
+      });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const employeeAPI = (url = `${API_URL}/Products/`) => {
     return {
@@ -117,12 +214,14 @@ export default function ProductList(props) {
           showRecordDetails={showRecordDetails}
           onDelete={onDelete}
           employeeList={employeeList}
+          setEmployeeList={setEmployeeList}
           setIsVisible={setIsVisible}
           isVisible={isVisible}
           search={search}
           number={number}
           truefalse={truefalse}
           valuesMonth={valuesMonth}
+          onclick={onclick}
         />
       </div>
     </>

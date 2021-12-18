@@ -52,12 +52,7 @@ function Dashboard(props) {
       exact: true,
       icon: <BsCartDashFill />,
     },
-    {
-      name: "Trang chủ",
-      to: "/dashboard/trangchu",
-      exact: true,
-      icon: <BsShop />,
-    },
+
     {
       name: "Product",
       to: "/dashboard/productlist",
@@ -288,7 +283,6 @@ function Dashboard(props) {
               <Route path="/dashboard/baiviet" component={BaiViet} />
               <Route path="/dashboard/slides" component={Slides} />
               <Route path="/dashboard/dashdefault" component={DashDefault} />
-              <Route path="/dashboard/trangchu" component={Productlist} />
 
               
               <div class="card col-md-3 align-items-center  " id="info">

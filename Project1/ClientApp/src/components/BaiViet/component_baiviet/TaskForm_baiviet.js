@@ -9,7 +9,7 @@ import { API_URLImages } from "../../../constants/config";
 import { API_URL } from "../../../constants/config";
 // const API_URL = "https://localhost:5001/api";
 // const API_URL1 = "http://sansale.somee.com/Images";
-const API_URL1 = `${API_URLImages}/Images`;
+const API_URL1 = `${API_URLImages}`;
 
 const UPLOAD_ENDPOINT = "Images/";
 const defaultImageSrc = "../assets/img/damir-bosnjak.jpg";
