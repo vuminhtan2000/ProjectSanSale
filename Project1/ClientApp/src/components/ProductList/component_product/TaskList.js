@@ -17,10 +17,10 @@ export default function TaskList(props) {
           <div class="card-header">
             <h4 class="card-title"> Product </h4>
           </div>
-          <div class="card-body" style={{ textAlign: "center" }} id="table-wrapper">
-            <div class="table-responsive " id="table-scroll">
+          <div class="card-body" style={{ textAlign: "center" }}>
+            <div class="table-responsive " >
               <table class="table"  >
-                <thead >
+                <thead class=" text-primary">
                 <th>
                 <input
                       type="checkbox"
