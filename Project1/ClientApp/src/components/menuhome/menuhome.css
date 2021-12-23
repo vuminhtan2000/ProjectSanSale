@@ -1,16 +1,15 @@
 .search {
-  width: 50%;
-  height: 50px;
+
+
   display: flex;
   max-width: 400px;
-  margin-top: 5px;
+
 }
 .search .i-serach {
-  width: 300px;
+  width: 200px;
 }
 .search .b-serach {
   width: 90px;
-  height: 35px;
   line-height: 0px !important;
 }
 .icon {
@@ -45,12 +44,14 @@
 
 .header .logo {
   color: var(--primary-color);
-  font-size: 1.8em;
+  font-size: 35px;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 2px;
   width: 15%;
+  height: 50px;
+  margin-top:-10px;
 }
 .header .navigation {
   position: relative;

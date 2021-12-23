@@ -10,6 +10,7 @@ import Baiviethome from "./pages/Baivietpage/Baiviet";
 import Backtotop from "./components/backtotop/backtotop";
 import Layout_chung from "./components/caterory_menu/showsanpham/Layout_chung";
 import Baiviet from "./pages/Baivietpage/baivietid";
+import Sanpham from "./pages/ProductAll/sanpham";
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
           <Route path="/baiviet" component={Baiviethome} />
 
           <Route path="/post/:id" component={Baiviet} />
+          <Route path="/products" component={Sanpham} />
+          
           </Switch>
           <Route path="/layout_chung" component={Layout_chung} />
           <Route path="/" exact component={Home} />

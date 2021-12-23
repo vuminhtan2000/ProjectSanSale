@@ -1,13 +1,13 @@
 /* khung menu category */
 
 .card-i {
-  width: 100%;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin: 10px;
+
 }
 
 .card-i a {
@@ -24,7 +24,9 @@
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
+.slick-track{
+width: 100%!important;
+}
 .cardimg {
   justify-content: center;
   margin: 10px;
@@ -86,6 +88,10 @@
     float: right;
     right: 30px;
   }
+  .slick-track{
+    width: 20%!important;
+    display: flex;
+    }
 }
 @media (max-width: 740px) {
   .card-i {
@@ -113,4 +119,5 @@
     float: right;
     right: 30px;
   }
+  
 }

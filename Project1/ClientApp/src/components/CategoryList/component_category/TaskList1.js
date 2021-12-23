@@ -59,7 +59,7 @@ export default function TaskList1(props) {
                             : "label label-warning"
                         }
                       >
-                        {item.status == true ? "Còn" : "Hết"}
+                        {item.status == true ? "Còn hoạt động" : "Tạm dừng"}
                       </span>
                     </td>
                     <td class="text-center">

@@ -6,6 +6,8 @@ import axios from "axios";
 import "./cateproduct.css";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
+import Controlproduct from "./Controlproduct";
+
 // import "./style.css";
 const onclick = (
   e,
@@ -68,14 +70,24 @@ const onclick = (
   })
 };
 
-const renderData = (data) => {
+const renderData = (data,search) => {
   return (
     <div className="home-product">
       {/* grid ->row -Column */}
       <div className="grid_row">
-        {data.map((item) => {
+        {data.filter((val) => {
+                      if (search == "") {
+                        return val;
+                      } else if (
+                        val.name
+                          .toLowerCase()
+                          .includes(search.toLowerCase())
+                      ) {
+                        return val;
+                      }
+                    }).map((item,i) => {
           return (
-            <div className="gird__column-2">
+            <div className="gird__column-2" key={i}>
               {/* product item */}
               <a
                 className="home-product-item"
@@ -164,10 +176,11 @@ const renderData = (data) => {
 };
 
 
-function Cateproduct() {
+
+export default function Cateproduct(props) {
   const [data, setData] = useState([]);
   const [cate, setcate] = useState([]);
-
+  const [search, setSearch] = useState("");
 
   const [currentPage, setcurrentPage] = useState(1);
   const [itemsPerPage, setitemsPerPage] = useState(12);
@@ -348,14 +361,12 @@ function Cateproduct() {
 
   return (
     <>
-      {/* <h1>Todo List</h1> <br /> */}
-      <div className="app_container">
-        <div className="grid">
-          <div className="grid__row">
-            <div className="grid__column-12">
-              <div className="home-filter">
-                <span className="home-filler_label"> Sắp xếp theo</span>
 
+   
+      <div className="app_container">
+      <div className="home-filter">
+                <span className="home-filler_label"> Sắp xếp theo</span>
+  
                 <button class="home-filler_btn btn-cate btn-primary " onClick={(e) =>
                     onclick_id(
                       e,
@@ -379,11 +390,15 @@ function Cateproduct() {
                 
                )
               )}
-               
-  
-                <div className="home-filter__page">
+                <Controlproduct
+                  // employeeList={employeeList}
+                  setSearch={setSearch}
+                  data={data}
+                  refreshEmployeeList_pro={refreshEmployeeList_pro}
+                />
+                                <div className="home-filter__page">
                   <span className="home-filler__page-num">
-                    <span className=" ">{currentPage}</span>
+                    <span className=" "></span>
                   </span>
                 </div>
                 <div className="home-filler__page-control">
@@ -409,10 +424,18 @@ function Cateproduct() {
                     </i>
                   </button>
                 </div>
-              </div>
+               </div>
+
+        <div className="grid">
+          <div className="grid__row">
+            <div className="grid__column-12">
+      
+             
+        
+           
               
               
-              {renderData(currentItems)}
+              {renderData(currentItems,search)}
              
             </div>
           </div>
@@ -421,5 +444,3 @@ function Cateproduct() {
     </>
   );
 }
-
-export default Cateproduct;
